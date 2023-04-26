@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/btnInicio"
+            android:enabled="true"
+            android:icon="@drawable/logodosapp"
+            android:title="INFO PHOTO"
+            android:checked="true"/>
+
+        <item
+            android:id="@+id/group1"
+            android:title="JOSMA">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/btnCanciones"
+                        android:checkable="false"
+                        android:enabled="true"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA" />
+                    <item
+                        android:id="@+id/btnPlaylist"
+                        android:checkable="false"
+                        android:enabled="true"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA" />
+                    <item
+                        android:id="@+id/btnCrud"
+                        android:checkable="false"
+                        android:enabled="true"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA" />
+
+                    <item
+                        android:id="@+id/btnSubirLocal"
+                        android:enabled="true"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA" />
+                </group>
+            </menu>
+
+        </item>
+
+
+        <item
+            android:id="@+id/group3"
+            android:title="JOSMA 2">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/btnPerfil"
+                        android:enabled="true"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA2" />
+                    <item
+                        android:id="@+id/btnSesion"
+                        android:enabled="true"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA3" />
+                </group>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/group2"
+            android:title="JOSMA3">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/btnWeb"
+                        android:enabled="true"
+                        android:checkable="false"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA" />
+                    <item
+                        android:id="@+id/btnAboutus"
+                        android:enabled="true"
+                        android:icon="@drawable/logodosapp"
+                        android:title="JOSMA" />
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu>

@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">INFO PHOTO</string>
+    <string name="prefes_file">com.example.app_info_photo_04_03.PREFENCE_FILE_KEY</string>
+    <string name="numeroLikes">%s% likes</string>
+    <string-array name="fotografos">
+        <item>Photo Josma</item>
+        <item>Photo Natura</item>
+        <item>Pepe Martinez</item>
+    </string-array>
+
+    <string-array name="ciudades">
+        <item>Granada</item>
+        <item>Almeria</item>
+        <item>Malaga</item>
+        <item>Cadiz</item>
+        <item>Huelva</item>
+        <item>Jaen</item>
+        <item>Sevilla</item>
+        <item>Cordoba</item>
+    </string-array>
+
+    <string-array name="tipoSesion">
+        <item>Bodas</item>
+        <item>Bautizos</item>
+        <item>Comuniones</item>
+    </string-array>
+
+
+    <string name="openNavDrawer">Navigation Drawer Open</string>
+    <string name="closeNavDrawer">Navigation Drawer Close</string>
+</resources>
