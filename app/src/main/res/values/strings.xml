@@ -20,18 +20,14 @@
     </string-array>
 
     <string-array name="tipoSesion">
-        <item>Bodas</item>
-        <item>Bautizos</item>
-        <item>Comuniones</item>
+        <item>Boda</item>
+        <item>Bautizo</item>
+        <item>Comunion</item>
     </string-array>
 
     <string-array name="tipoPack">
-        <item>Normal</item>
+        <item>Estándar</item>
         <item>Medio</item>
         <item>Delux</item>
     </string-array>
-
-
-    <string name="openNavDrawer">Navigation Drawer Open</string>
-    <string name="closeNavDrawer">Navigation Drawer Close</string>
 </resources>

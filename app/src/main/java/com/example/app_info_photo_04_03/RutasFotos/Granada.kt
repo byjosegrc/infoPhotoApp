@@ -97,7 +97,7 @@ class Granada  : AppCompatActivity(), OnMapReadyCallback {
             map.addMarker(MarkerOptions()
                 .position(primera)
                 .title("1")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador))
+             //   .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador))
                 )
 
 

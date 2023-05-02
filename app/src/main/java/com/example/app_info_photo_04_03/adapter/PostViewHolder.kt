@@ -6,6 +6,7 @@ import com.example.app_info_photo_04_03.R
 import com.example.app_info_photo_04_03.databinding.LayoutPublicacionBinding
 import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.pref.Prefs
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -14,7 +15,13 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
     //preferencias de datos:
     lateinit var prefs: Prefs
     private var likeFav = false
-    fun render(posts: Publicacion, onItemView: (Any?) -> Unit) { //,  onItemLike: (Any, Any) -> Unit
+    lateinit var db: FirebaseDatabase
+    fun render(posts: Publicacion, onItemView: (Any?) -> Unit
+              ){ //,  onItemLike: (Any, Any) -> Unit
+
+
+        //conexion a la base de datos de real time database de mi proyecto de firebase
+        db = FirebaseDatabase.getInstance("https://infophoto-2023-default-rtdb.europe-west1.firebasedatabase.app/")
 
         prefs = Prefs(binding.tvEmail.context)
 
@@ -24,8 +31,11 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
         binding.tvPost.text = posts.contenido
         binding.tvLikes.text = posts.likes.toString()
         binding.tvFecha.text = convertirFecha(posts.fecha!!)
+     //   val likes = Publicacion.likes!!
+      //  val liked = likes.contains()
         itemView.setOnClickListener {
             onItemView(posts.autor)
+           // onItemLike(posts.likes,likeFav)
         }
 
         binding.btnLike.setOnClickListener{

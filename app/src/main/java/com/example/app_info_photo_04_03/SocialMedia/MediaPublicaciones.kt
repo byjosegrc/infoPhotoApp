@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.BoringLayout
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -59,7 +58,7 @@ class MediaPublicaciones : AppCompatActivity() {
 
         //funcion para configurar el Swipe del chat
         configSwipe()
-        title="SOCIAL MEDIA INFO PHOTO"
+        title="SOCIAL MEDIA"
     }
 
     @SuppressLint("ResourceAsColor")
@@ -120,7 +119,8 @@ class MediaPublicaciones : AppCompatActivity() {
 
     private fun setRecycler() {
         adapter = PublicacionAdapters(lista) {  post -> onItemView(post as String) }
-            //         adapter =     PublicacionAdapters(lista,{onItemView(it as String)})
+      //   adapter =     PublicacionAdapters(lista,{onItemLike(it as String,it as Boolean)})
+
             //like,boton -> onItemLike(like as Int, boton as Boolean)}
         // {  post -> onItemView(post as String) }
         binding.recAutores.adapter = adapter
@@ -129,20 +129,19 @@ class MediaPublicaciones : AppCompatActivity() {
 
         }
 
-    private fun onItemLike(i: Int,likeFav: Boolean){
+   /* private fun onItemLike(i: String, likeFav: Boolean){
     //logica de los likes:
-        var contrarioLike =! likeFav
-
         if(likeFav){
          i+1
         }
         else{
-            contrarioLike
          i-1
         }
 
 
     }
+
+    */
 
     private fun onItemView(it: String) {
         startActivity(Intent(this, PerfilUsuario::class.java).putExtra("email", it))

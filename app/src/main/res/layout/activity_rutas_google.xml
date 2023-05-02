@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondoruta"
     tools:context=".Home.HomeActivity">
 
 
@@ -15,7 +15,7 @@
         android:layout_marginTop="132dp"
         android:fontFamily="@font/primera"
         android:text="- RUTAS FOTOS -"
-        android:textColor="@color/home"
+        android:textColor="@color/fondoNegro"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/cvGranada"
@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.236"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="NotSibling" />
 
     <androidx.cardview.widget.CardView
