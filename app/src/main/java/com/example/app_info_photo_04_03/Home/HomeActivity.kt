@@ -49,10 +49,12 @@ class HomeActivity : AppCompatActivity() {
         val carousel: ImageCarousel = findViewById(R.id.carousel)
 
         //añado las imagenes al arraylistOf
-        list.add(CarouselItem(R.drawable.banneruno))
-        list.add(CarouselItem(R.drawable.bannerdos))
-        list.add(CarouselItem(R.drawable.bannertres))
-        list.add(CarouselItem(R.drawable.bannercuatro))
+        list.add(CarouselItem(R.drawable.bannercinco))
+        list.add(CarouselItem(R.drawable.bannerpromo))
+        list.add(CarouselItem(R.drawable.promo))
+        list.add(CarouselItem(R.drawable.promouno))
+        list.add(CarouselItem(R.drawable.promodos))
+        list.add(CarouselItem(R.drawable.bannerrutas))
         //le pasamos al array la lista de valores en este caso
         // imagenes al carusel de imagenes
         carousel.addData(list)
@@ -177,26 +179,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
-
-/*    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        transaction = supportFragmentManager.beginTransaction()
-        when (item.itemId) {
-            R.id.itemSalir -> {
-                finishAffinity()
-                true
-            }
-            R.id.itemCerrar -> {
-                FirebaseAuth.getInstance().signOut()
-                prefs.deleteAll()
-                finish()
-                true
-            }
-            else ->{
-              return false
-            }
-        }
-    }*/
-
 }
 
 

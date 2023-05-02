@@ -14,8 +14,7 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
     //preferencias de datos:
     lateinit var prefs: Prefs
     private var likeFav = false
-
-    fun render(posts: Publicacion, onItemView: (Any?) -> Unit, onItemLike: (Any, Any) -> Unit) {
+    fun render(posts: Publicacion, onItemView: (Any?) -> Unit) { //,  onItemLike: (Any, Any) -> Unit
 
         prefs = Prefs(binding.tvEmail.context)
 
@@ -23,14 +22,14 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
 
         binding.tvEmail.text = posts.autor
         binding.tvPost.text = posts.contenido
+        binding.tvLikes.text = posts.likes.toString()
         binding.tvFecha.text = convertirFecha(posts.fecha!!)
         itemView.setOnClickListener {
             onItemView(posts.autor)
         }
 
         binding.btnLike.setOnClickListener{
-            onItemLike(posts.likes,likeFav)
-
+            cambiarImgLike()
         }
     }
 
@@ -38,6 +37,15 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
         val date = Date(fecha)
         val format = SimpleDateFormat("dd/MM/yyyy h:m:ss")
         return format.format(date)
+    }
+
+    private fun cambiarImgLike() {
+        likeFav = !likeFav
+        if(likeFav){
+            binding.btnLike.setImageResource(R.drawable.ic_like_dos)
+        }else{
+            binding.btnLike.setImageResource(R.drawable.ic_like_uno)
+        }
     }
 
 

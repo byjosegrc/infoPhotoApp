@@ -11,8 +11,9 @@ import com.example.app_info_photo_04_03.pref.Prefs
 import com.google.firebase.database.FirebaseDatabase
 
 class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicacion>(),
-                          var onItemView: (Any?) -> Unit,
-                          var onItemLike:(Any, Any)-> Unit): RecyclerView.Adapter<PostViewHolder>(){
+                          var onItemView: (Any?) -> Unit): RecyclerView.Adapter<PostViewHolder>(){
+
+    // var onItemLike:(Any, Any)-> Unit
 
     //preferencias de datos:
     lateinit var prefs: Prefs
@@ -38,7 +39,7 @@ class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicac
         val likes = post.likes!!
        //  val liked = likes.contains()
 
-        holder.render(lista[position], onItemView, onItemLike)
+        holder.render(lista[position], onItemView) //, onItemLike
 
 
         /* holder.binding.btnLikes.setOnClickListener{

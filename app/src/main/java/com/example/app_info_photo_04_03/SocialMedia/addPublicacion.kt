@@ -43,6 +43,7 @@ class addPublicacion : AppCompatActivity() {
             }
             //No esta vacio, añadimos
             val post = Publicacion(contenido = contenido, autor = prefs.getEmail().toString())
+
             db.getReference("posts").child(post.fecha.toString()).setValue(post).addOnSuccessListener {
                 finish()
             }

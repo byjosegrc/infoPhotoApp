@@ -119,36 +119,27 @@ class MediaPublicaciones : AppCompatActivity() {
     }
 
     private fun setRecycler() {
-        adapter = PublicacionAdapters(lista,{onItemView(it as String)}){
-            like,boton -> onItemLike(like as Int, boton as Boolean)}    // {  post -> onItemView(post as String) }
-
+        adapter = PublicacionAdapters(lista) {  post -> onItemView(post as String) }
+            //         adapter =     PublicacionAdapters(lista,{onItemView(it as String)})
+            //like,boton -> onItemLike(like as Int, boton as Boolean)}
+        // {  post -> onItemView(post as String) }
         binding.recAutores.adapter = adapter
         val layoutManager = LinearLayoutManager(this)
         binding.recAutores.layoutManager = layoutManager
 
         }
 
-    private fun onItemLike(i: Int,likeFav: Boolean): Boolean {
+    private fun onItemLike(i: Int,likeFav: Boolean){
     //logica de los likes:
-
-        var id = 0
-
         var contrarioLike =! likeFav
 
         if(likeFav){
-            id = R.drawable.ic_like_dos
+         i+1
         }
         else{
-            id = R.drawable.ic_like_uno
+            contrarioLike
+         i-1
         }
-
-
-        var sumaLikes = i+1
-
-
-        var restaLikes = i-1
-
-        return contrarioLike
 
 
     }
