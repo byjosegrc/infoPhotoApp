@@ -36,8 +36,8 @@ class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicac
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
 
         val post = lista[position]
-        val likes = post.likes!!
-       //  val liked = likes.contains()
+        val likes = post.likes!!.toString().toMutableList()
+//        val liked = likes.contains(Prefs.getEmail)
 
         holder.render(lista[position], onItemView) //, onItemLike
 

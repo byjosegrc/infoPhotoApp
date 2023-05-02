@@ -6,5 +6,6 @@ data class Reservas(
     var telefono: String? = null,
     var diaReservas: String? = null,
     var tipoSesion: String? = null,
-    var tipoPack: String? = null
+    var tipoPack: String? = null,
+    var precio: String? = null
 ):java.io.Serializable

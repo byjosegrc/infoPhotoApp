@@ -56,6 +56,7 @@
             android:id="@+id/etCalendario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="268dp"
             android:ems="10"
             android:fontFamily="@font/primera"
             android:text="CALENDARIO"
@@ -145,7 +146,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnModificar"
+            android:id="@+id/btnCalcular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="210dp"
@@ -158,12 +159,13 @@
             android:id="@+id/etNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:ems="10"
             android:fontFamily="@font/primera"
             android:hint="NOMBRE"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/btnModificar"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintVertical_bias="0.035" />
@@ -172,20 +174,22 @@
             android:id="@+id/etApellido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="580dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="24dp"
             android:ems="10"
             android:fontFamily="@font/primera"
             android:hint="APELLIDOS"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/btnModificar"
+            app:layout_constraintBottom_toTopOf="@+id/etTelefono"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/etNombre" />
 
         <EditText
             android:id="@+id/etTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:ems="10"
             android:fontFamily="@font/primera"
             android:hint="TELEFONO"
@@ -217,14 +221,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tvPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
-            android:text="(PRECIO CALCULADO)"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/primera"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnModificar" />
+            app:layout_constraintTop_toBottomOf="@+id/btnCalcular" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

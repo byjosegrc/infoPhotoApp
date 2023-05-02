@@ -3,16 +3,21 @@ package com.example.app_info_photo_04_03.Home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.app_info_photo_04_03.Calendario.Calendario
 import com.example.app_info_photo_04_03.R
 import com.example.app_info_photo_04_03.databinding.ActivityReservasBinding
-import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.model.Reservas
 import com.example.app_info_photo_04_03.pref.Prefs
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class ReservasActivity : AppCompatActivity() {
 
@@ -32,6 +37,7 @@ class ReservasActivity : AppCompatActivity() {
     var diaCalendario = ""
     var tipoSesion = ""
     var tipoPack = ""
+    var precio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -44,10 +50,36 @@ class ReservasActivity : AppCompatActivity() {
 
         //LLamada a la funcion que va estar ejecutandose siempre para la escucha de eventos:
         setListeners()
+        obtenerReservas()
         //Titulo del activity:
         title = "RESERVA SESIONES"
     }
 
+    private fun obtenerReservas(): LiveData<MutableList<Reservas>> {
+        val mutableLista = MutableLiveData<MutableList<Reservas>>()
+        val lista = mutableListOf<Reservas>()
+
+            db.getReference("reservas").addValueEventListener(object : ValueEventListener {
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    lista.clear()
+                    if (snapshot.exists()) {
+                    for (item in snapshot.children){
+                        val fechas = item.getValue(Reservas::class.java)
+                        if(fechas!=null){
+                            lista.add(fechas)
+                        }
+                    }
+                        lista.sortBy { it.diaReservas }
+                        mutableLista.value=lista
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        return mutableLista
+    }
 
 
     private fun setListeners() {
@@ -77,7 +109,64 @@ class ReservasActivity : AppCompatActivity() {
             guardarReserva()
         }
 
+        binding.btnCalcular.setOnClickListener{
+            calcularPrecios()
+        }
 
+
+
+    }
+
+    //esta funcion va a calcular segundo los datos que se han selecciado:
+    private fun calcularPrecios() {
+
+        //BAUTIZO:
+        println("ENTROOO--------------------------------> $precio")
+        binding.tvPrecio.text = precio
+
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Normal")){
+            precio = "250";
+            binding.tvPrecio.text = precio
+            println("ENTROOO--------------------------------> $precio  <-------------------")
+        }
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Medio")){
+            precio = "350";
+            binding.tvPrecio.text = ("$precio")
+        }
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Delux")){
+            precio = "450";
+            binding.tvPrecio.text = ("$precio")
+        }
+
+        //COMUNION:
+
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Normal")){
+            precio = "400";
+            binding.tvPrecio.text = ("$precio")
+        }
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Medio")){
+            precio = "600";
+            binding.tvPrecio.text = ("$precio")
+        }
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Delux")){
+            precio = "800";
+            binding.tvPrecio.text = ("$precio")
+        }
+
+        //BODA
+
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Normal")){
+            precio = "1000";
+            binding.tvPrecio.text = ("$precio")
+        }
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Medio")){
+            precio = "1200"
+            binding.tvPrecio.text = ("$precio")
+        }
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Delux")){
+            precio = "1500";
+            binding.tvPrecio.text = ("$precio")
+        }
 
     }
 
@@ -110,10 +199,20 @@ class ReservasActivity : AppCompatActivity() {
         //spinner tipo sesion
         tipoSesion = binding.spnTipo.selectedItem.toString()
 
+
         //spinner tipo pack
         tipoPack = binding.spnPack.selectedItem.toString()
+        //precio sesiones
 
-        val reservaSesiones = Reservas(nombre, apellidos , telefono, diaCalendario,tipoSesion,tipoPack)
+        precio = binding.tvPrecio.text.toString().trim()
+        if (precio.isEmpty()) {
+            binding.tvPrecio.error = "TIENES QUE DARLE A CALCULAR PRECIO"
+            binding.tvPrecio.requestFocus()
+            return
+        }
+
+
+        val reservaSesiones = Reservas(nombre, apellidos , telefono, diaCalendario,tipoSesion,tipoPack,precio)
 
 
         //  db.getReference("posts").child(post.fecha.toString()).setValue(post).addOnSuccessListener {

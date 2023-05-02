@@ -58,11 +58,7 @@ class PerfilUsuario : AppCompatActivity() {
                 R.id.settings -> startActivity(Intent(this, SettingsActivity::class.java))
 
                 else ->{
-
-
-
                 }
-
             }
 
             true

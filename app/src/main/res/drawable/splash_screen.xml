@@ -7,7 +7,7 @@
       android:width="200dp"
       android:height="200dp"
       android:gravity="center">
-      <bitmap android:src="@drawable/logodosapp"/>
+      <bitmap android:src="@drawable/logoappsp"/>
   </item>
 
 </layer-list>
