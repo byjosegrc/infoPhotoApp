@@ -17,7 +17,7 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
     private var likeFav = false
     lateinit var db: FirebaseDatabase
     fun render(posts: Publicacion, onItemView: (Any?) -> Unit
-              ){ //,  onItemLike: (Any, Any) -> Unit
+               ,  onItemLike: (Any, Any) -> Unit) {
 
 
         //conexion a la base de datos de real time database de mi proyecto de firebase
@@ -37,9 +37,9 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
             onItemView(posts.autor)
            // onItemLike(posts.likes,likeFav)
         }
-
         binding.btnLike.setOnClickListener{
             cambiarImgLike()
+            onItemLike(posts,likeFav)
         }
     }
 

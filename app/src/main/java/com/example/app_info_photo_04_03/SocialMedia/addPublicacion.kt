@@ -41,6 +41,8 @@ class addPublicacion : AppCompatActivity() {
                 binding.etPost.requestFocus()
                 return
             }
+
+
             //No esta vacio, añadimos
             val post = Publicacion(contenido = contenido, autor = prefs.getEmail().toString())
 

@@ -18,6 +18,7 @@ import com.example.app_info_photo_04_03.R
 import com.example.app_info_photo_04_03.adapter.PublicacionAdapters
 
 import com.example.app_info_photo_04_03.databinding.ActivityForoPublicacionesBinding
+import com.example.app_info_photo_04_03.model.Perfil
 import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.pref.Prefs
 import com.google.firebase.database.DataSnapshot
@@ -118,7 +119,10 @@ class MediaPublicaciones : AppCompatActivity() {
     }
 
     private fun setRecycler() {
-        adapter = PublicacionAdapters(lista) {  post -> onItemView(post as String) }
+        adapter = PublicacionAdapters(lista,{
+                post -> onItemView(post as String) }) {
+                publicacion,fav -> onItemLike(publicacion as Publicacion, fav as Boolean)
+        }
       //   adapter =     PublicacionAdapters(lista,{onItemLike(it as String,it as Boolean)})
 
             //like,boton -> onItemLike(like as Int, boton as Boolean)}
@@ -129,19 +133,37 @@ class MediaPublicaciones : AppCompatActivity() {
 
         }
 
-   /* private fun onItemLike(i: String, likeFav: Boolean){
-    //logica de los likes:
+
+    private fun onItemLike(publicacion: Publicacion,likeFav: Boolean){
+
         if(likeFav){
-         i+1
-        }
-        else{
-         i-1
+
+       var user1 = Publicacion(publicacion.fecha,publicacion.likes+1,publicacion.autor,
+           publicacion.contenido)
+
+
+            //publicacion.contenido,publicacion.likers.add(publicacion.likers.size,prefs.getEmail().toString()))
+
+
+           actualizarLike(user1)
         }
 
+        else{
+            var user1 = Publicacion(publicacion.fecha,publicacion.likes-1,publicacion.autor,publicacion.contenido)
+            actualizarLike(user1)
+        }
 
     }
 
-    */
+    private fun actualizarLike(autor : Publicacion) {
+
+
+
+        db.getReference("posts").child(autor.fecha.toString()).setValue(autor).addOnSuccessListener {
+            traerPosts()
+        }
+    }
+
 
     private fun onItemView(it: String) {
         startActivity(Intent(this, PerfilUsuario::class.java).putExtra("email", it))

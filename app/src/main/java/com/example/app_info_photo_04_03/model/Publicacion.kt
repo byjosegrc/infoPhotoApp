@@ -7,5 +7,6 @@ data class Publicacion(
     var fecha: Long? = System.currentTimeMillis(),
     var likes: Int = 0,
     var autor: String? = null,
-    var contenido: String? = null
+    var contenido: String? = null,
+  //  var likers: Unit = mutableListOf()
 ):java.io.Serializable
