@@ -30,9 +30,9 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/primera"
-        android:text="ESTÁNDAR  ➤ FOTOS ✚ EDICIÓN"
+        android:text="ESTÁNDAR : FOTOS ✚ EDICIÓN"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -44,9 +44,9 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/primera"
-        android:text="ESTÁNDAR  ➤ FOTOS ✚ EDICIÓN ✚ VIDEO MONTAJE"
+        android:text="MEDIA:  FOTOS ✚ EDICIÓN ✚ VIDEO MONTAJE"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -58,9 +58,9 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/primera"
-        android:text="MEDIA ➤ FOTOS ✚ EDICIÓN ✚ VIDEO MONTAJE ✚ DRON"
+        android:text="DELUX: FOTOS ✚ EDICIÓN ✚ VIDEO MONTAJE ✚ DRON"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
 </LinearLayout>

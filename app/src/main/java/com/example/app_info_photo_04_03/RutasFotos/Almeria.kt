@@ -25,7 +25,7 @@ class Almeria : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_granada)
-        title = "Almeria Capital Tour"
+        title = "ALMERIA CAPITAL"
         createMapFragment()
     }
 
@@ -63,7 +63,7 @@ class Almeria : AppCompatActivity(), OnMapReadyCallback {
 
             .add(LatLng(36.837060, -2.467511))
             .add(LatLng(36.833737, -2.464509))
-            .add(LatLng(36.832174, -2.463499))
+           // .add(LatLng(36.832174, -2.463499))
             .width(15f)
             .color(ContextCompat.getColor(this, R.color.black))
 
@@ -106,18 +106,10 @@ class Almeria : AppCompatActivity(), OnMapReadyCallback {
         )
         //2
 
-        val segunda = LatLng(36.832838, -2.463571)
-        map.addMarker(MarkerOptions()
-            .position(segunda)
-            .title("2")
-        )
-
-        //3
-
         val tres = LatLng(36.833116, -2.463530)
         map.addMarker(MarkerOptions()
             .position(tres)
-            .title("3")
+            .title("2")
         )
 
         //4
@@ -125,7 +117,7 @@ class Almeria : AppCompatActivity(), OnMapReadyCallback {
         val cuatro = LatLng( 36.833361, -2.464272)
         map.addMarker(MarkerOptions()
             .position(cuatro)
-            .title("4")
+            .title("LOCOMOTORA DEL PUERTO")
         )
 
         //5
@@ -133,7 +125,7 @@ class Almeria : AppCompatActivity(), OnMapReadyCallback {
         val cinco = LatLng( 36.834985, -2.462990)
         map.addMarker(MarkerOptions()
             .position(cinco)
-            .title("5")
+            .title("CALLE DEL PASEO")
         )
 
 
@@ -142,7 +134,7 @@ class Almeria : AppCompatActivity(), OnMapReadyCallback {
         val seis = LatLng( 36.837345, -2.463321)
         map.addMarker(MarkerOptions()
             .position(seis)
-            .title("6")
+            .title("TEATRO CERVANTES")
         )
 
 
