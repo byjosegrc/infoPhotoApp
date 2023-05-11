@@ -53,13 +53,6 @@
     </style>
 
 
-
-
-
-
-
-
-
     <style name="LOGIN">
         <item name="android:textSize">36sp</item>
         <item name="android:textColor">@color/login</item>
@@ -84,14 +77,25 @@
     </style>
 
 
-
-
-
-
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <style name="Theme.APP_INFO_PHOTO_04_03.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
+    <style name="Theme.APP_INFO_PHOTO_04_03.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.APP_INFO_PHOTO_04_03.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TransparentDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 
 </resources>

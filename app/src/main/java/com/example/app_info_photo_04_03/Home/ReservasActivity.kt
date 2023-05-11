@@ -1,14 +1,16 @@
 package com.example.app_info_photo_04_03.Home
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.inflate
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ComplexColorCompat.inflate
 import com.example.app_info_photo_04_03.Calendario.Calendario
 import com.example.app_info_photo_04_03.R
 import com.example.app_info_photo_04_03.databinding.ActivityReservasBinding
@@ -18,6 +20,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import org.imaginativeworld.whynotimagecarousel.databinding.ItemCarouselBinding.inflate
+
 
 class ReservasActivity : AppCompatActivity() {
 
@@ -38,6 +42,9 @@ class ReservasActivity : AppCompatActivity() {
     var tipoSesion = ""
     var tipoPack = ""
     var precio = ""
+    var pack = "Estándar: Fotos +Edición " +
+            "Estándar: Fotos +Edición" +
+            "Estándar: Fotos +Edición"
     //Lista Fechas:
 
     var listaFechas = mutableListOf<String>()
@@ -56,6 +63,8 @@ class ReservasActivity : AppCompatActivity() {
         obtenerReservas()
         //Titulo del activity:
         title = "RESERVA SESIONES"
+
+
     }
 
     private fun obtenerReservas(){
@@ -109,9 +118,32 @@ class ReservasActivity : AppCompatActivity() {
             calcularPrecios()
         }
 
+        binding.ibtInfo.setOnClickListener{
+            abrirDialgoPack()
+        }
+
+
+
 
 
     }
+
+    private fun abrirDialgoPack() {
+        println("---------------------------")
+        val builder = AlertDialog.Builder(this, R.style.TransparentDialog)
+        // builder.setTitle("PACK FOTOS")
+        // val inflater = LayoutInflater()
+        val inflate = layoutInflater.inflate(R.layout.activity_dialogo_tipo_pack, null)
+        builder.setView(inflate)
+        //builder.setIcon(R.drawable)
+
+        builder.show() //monstrarlo
+    }
+
+
+
+
+
 
     //esta funcion va a calcular segundo los datos que se han selecciado:
     private fun calcularPrecios() {
@@ -120,7 +152,7 @@ class ReservasActivity : AppCompatActivity() {
         println("ENTROOO--------------------------------> $precio")
         binding.tvPrecio.text = precio
 
-        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Normal")){
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Estándar")){
             precio = "250";
             binding.tvPrecio.text = precio
             println("ENTROOO--------------------------------> $precio  <-------------------")
@@ -136,7 +168,7 @@ class ReservasActivity : AppCompatActivity() {
 
         //COMUNION:
 
-        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Normal")){
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Estándar")){
             precio = "400";
             binding.tvPrecio.text = ("$precio")
         }
@@ -151,7 +183,7 @@ class ReservasActivity : AppCompatActivity() {
 
         //BODA
 
-        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Normal")){
+        if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Estándar")){
             precio = "1000";
             binding.tvPrecio.text = ("$precio")
         }
@@ -308,6 +340,11 @@ class ReservasActivity : AppCompatActivity() {
     }
 
 }
+
+
+
+
+
 
 
 

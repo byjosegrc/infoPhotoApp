@@ -66,10 +66,15 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
+
+
+
+
+
     private fun setListener() {
         //tema oscuro
 
-        binding.btnOscuro.setOnClickListener{
+      binding.btnOscuro.setOnClickListener{
             enableDarkMode()
         }
 
@@ -77,8 +82,10 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.btnClaro.setOnClickListener{
             disableDarkMode()
-        }
+       }
     }
+
+
 
 
     //ENABLE EL TEMA OSCURO

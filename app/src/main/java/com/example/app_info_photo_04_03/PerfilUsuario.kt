@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
@@ -77,7 +78,16 @@ class PerfilUsuario : AppCompatActivity() {
 
         db.getReference("perfiles").addValueEventListener(object : ValueEventListener {
 
+
+
         override fun onDataChange(snapshot: DataSnapshot) {
+
+
+            binding.prg.isVisible = false
+            binding.prg1.isVisible = false
+            binding.prg2.isVisible = false
+            binding.prg3.isVisible = false
+
 
             if(snapshot.exists()){
 

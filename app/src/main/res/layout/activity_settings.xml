@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/fondoNaraja"
         android:foregroundTint="@color/fondoNaraja"
         android:gravity="center_vertical"
@@ -43,7 +44,7 @@
             android:src="@drawable/ic_dark_mode" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="322dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/fondoNaraja"
@@ -55,7 +56,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/primera"
                 android:text="Modo oscuro"
-                android:textColor="@color/home" />
+                android:textColor="@color/home"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,11 +66,12 @@
                 android:fontFamily="@font/primera"
                 android:text="Activa el modo oscuro para un cambio visual"
                 android:textColor="@color/home"
-                android:textSize="11sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnClaro"
-                android:layout_width="match_parent"
+                android:layout_width="224dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/fondoNaraja"
                 android:fontFamily="@font/primera"
@@ -77,7 +81,7 @@
 
             <Button
                 android:id="@+id/btnOscuro"
-                android:layout_width="match_parent"
+                android:layout_width="224dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/fondoNaraja"
                 android:fontFamily="@font/primera"

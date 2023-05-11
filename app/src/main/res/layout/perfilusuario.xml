@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".PerfilUsuario">
 
+    <ProgressBar
+        android:id="@+id/prg"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="39dp"
+        android:layout_height="38dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_Avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCorreo" />
+
+    <ProgressBar
+        android:id="@+id/prg3"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="39dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="184dp"
+        android:layout_marginEnd="124dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/iv_Avatar" />
+
+    <ProgressBar
+        android:id="@+id/prg1"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="39dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="124dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/iv_Avatar" />
+
     <TextView
         android:id="@+id/tvCorreo"
         android:layout_width="wrap_content"
@@ -112,7 +148,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
         android:layout_marginEnd="119dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -124,7 +159,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
         android:layout_marginEnd="119dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -136,7 +170,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="74dp"
         android:layout_marginEnd="119dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -153,6 +186,19 @@
         app:menu="@menu/barra_navegacion">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <ProgressBar
+        android:id="@+id/prg2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="39dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="124dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/iv_Avatar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

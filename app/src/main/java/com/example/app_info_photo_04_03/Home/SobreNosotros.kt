@@ -8,6 +8,7 @@ import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.MediaController
+import androidx.core.view.isVisible
 import com.example.app_info_photo_04_03.R
 import com.example.app_info_photo_04_03.RutasFotos.GoogleMaps1
 import com.example.app_info_photo_04_03.databinding.SobreNosotrosBinding
@@ -60,6 +61,9 @@ class SobreNosotros : AppCompatActivity() {
     }
 
     private fun reproducirVideo() {
+
+        binding.videoView.isVisible = true
+
 
 
         var aleatorio = (0..1).random()

@@ -59,7 +59,7 @@ class MediaPublicaciones : AppCompatActivity() {
 
         //funcion para configurar el Swipe del chat
         configSwipe()
-        title="SOCIAL MEDIA"
+        title="RED SOCIAL"
     }
 
     @SuppressLint("ResourceAsColor")
@@ -134,7 +134,8 @@ class MediaPublicaciones : AppCompatActivity() {
         }
 
 
-    private fun onItemLike(publicacion: Publicacion,likeFav: Boolean){
+    @SuppressLint("SuspiciousIndentation")
+    private fun onItemLike(publicacion: Publicacion, likeFav: Boolean){
 
         if(likeFav){
 

@@ -10,8 +10,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context=".Home.ReservasActivity">
+        tools:context=".Home.ReservasActivity"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="0dp">
 
+
+        <ImageView
+            android:id="@+id/ibtInfo"
+            android:layout_width="52dp"
+            android:layout_height="49dp"
+            android:background="@drawable/ic_btninfo"
+            android:backgroundTint="@color/ic_launcher_background"
+            android:src="@drawable/ic_info"
+            app:layout_constraintBottom_toBottomOf="@+id/spnPack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/spnPack" />
+
+        <Spinner
+            android:id="@+id/spnPack"
+            android:layout_width="208dp"
+            android:layout_height="32dp"
+            android:entries="@array/tipoPack"
+            app:layout_constraintBottom_toTopOf="@+id/btnCalcular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <Spinner
+            android:id="@+id/spnTipo"
+            android:layout_width="208dp"
+            android:layout_height="32dp"
+            android:entries="@array/tipoSesion"
+            app:layout_constraintBottom_toTopOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <Button
             android:id="@+id/btnReserva"
@@ -19,23 +55,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="900dp"
             android:layout_marginBottom="20dp"
-            android:text="RESERVAR SESIÓN"
+            android:backgroundTint="@color/fondoNaraja"
+            android:fontFamily="@font/primera"
+            android:text="RESERVAR"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:layout_constraintVertical_bias="0.0" />
-
-        <Spinner
-            android:id="@+id/spnTipo"
-            android:layout_width="299dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="20dp"
-            android:entries="@array/tipoSesion"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv" />
 
         <TextView
             android:id="@+id/textView9"
@@ -60,7 +90,7 @@
             android:ems="10"
             android:fontFamily="@font/primera"
             android:hint="CALENDARIO"
-            android:textColor="@color/fondoNegro"
+            android:textColor="@color/fondoNaraja"
             android:textStyle="bold"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
@@ -86,23 +116,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="524dp"
-            android:fontFamily="@font/primera"
-            android:text="TIPO SESIÓN"
-            android:textColor="@color/home"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.439"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/textView5"
-            android:layout_width="wrap_content"
+            android:layout_width="149dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="524dp"
             android:fontFamily="@font/primera"
@@ -111,7 +126,6 @@
             android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.439"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -136,12 +150,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="404dp"
             android:fontFamily="@font/primera"
-            android:text="FOTOGRAF@S"
+            android:text="UBICACIÓN"
             android:textColor="@color/home"
             android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.439"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -150,7 +163,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="210dp"
+            android:backgroundTint="@color/fondoNaraja"
+            android:fontFamily="@font/primera"
             android:text="CALCULAR PRECIO"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -199,24 +216,13 @@
             app:layout_constraintTop_toBottomOf="@+id/etApellido" />
 
         <Spinner
-            android:id="@+id/spnPack"
-            android:layout_width="299dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="16dp"
-            android:entries="@array/tipoPack"
+            android:id="@+id/spnPack2"
+            android:layout_width="208dp"
+            android:layout_height="32dp"
+            android:entries="@array/ubicación"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.383"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="Por ahora solo trabajamos con PhotoJosma"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
