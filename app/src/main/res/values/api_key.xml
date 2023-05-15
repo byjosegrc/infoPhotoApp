@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // para que ni lo traduzca ni lo formaté
+    <string name="api_key" translatable="false" formatted="false">36426187-1543c4351e6133871ba41feb8</string>
+</resources>

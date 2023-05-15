@@ -53,7 +53,8 @@ class SobreNosotros : AppCompatActivity() {
     private fun setListeners() {
 
         binding.cvPlay.setOnClickListener{
-            reproducirVideo()
+           // reproducirVideo()
+            startActivity(Intent(this, GaleriaFotografias::class.java))
         }
         binding.cvSede.setOnClickListener{
             startActivity(Intent(this, GoogleMaps1::class.java))
