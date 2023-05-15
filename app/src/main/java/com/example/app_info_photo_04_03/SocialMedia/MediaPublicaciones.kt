@@ -18,6 +18,7 @@ import com.example.app_info_photo_04_03.R
 import com.example.app_info_photo_04_03.adapter.PublicacionAdapters
 
 import com.example.app_info_photo_04_03.databinding.ActivityForoPublicacionesBinding
+import com.example.app_info_photo_04_03.model.Likes
 import com.example.app_info_photo_04_03.model.Perfil
 import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.pref.Prefs
@@ -135,7 +136,9 @@ class MediaPublicaciones : AppCompatActivity() {
 
 
     @SuppressLint("SuspiciousIndentation")
+
     private fun onItemLike(publicacion: Publicacion, likeFav: Boolean){
+
 
         if(likeFav){
 
@@ -156,6 +159,8 @@ class MediaPublicaciones : AppCompatActivity() {
 
     }
 
+
+
     private fun actualizarLike(autor : Publicacion) {
 
 
@@ -164,6 +169,9 @@ class MediaPublicaciones : AppCompatActivity() {
             traerPosts()
         }
     }
+
+
+
 
 
     private fun onItemView(it: String) {

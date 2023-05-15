@@ -3,6 +3,7 @@ package com.example.app_info_photo_04_03.SocialMedia
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.app_info_photo_04_03.databinding.ActivityAddPublicacionBinding
+import com.example.app_info_photo_04_03.model.Likes
 import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.pref.Prefs
 import com.google.firebase.database.FirebaseDatabase
@@ -46,8 +47,15 @@ class addPublicacion : AppCompatActivity() {
             //No esta vacio, añadimos
             val post = Publicacion(contenido = contenido, autor = prefs.getEmail().toString())
 
+            val likes = Likes(idPost = post.fecha )
+
             db.getReference("posts").child(post.fecha.toString()).setValue(post).addOnSuccessListener {
-                finish()
+                db.getReference("likes").child(post.fecha.toString()).setValue(likes).addOnSuccessListener {
+                    finish()
+                }
             }
+
+
+
         }
     }
