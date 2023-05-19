@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_info_photo_04_03.R
 import com.example.app_info_photo_04_03.databinding.LayoutPublicacionBinding
+import com.example.app_info_photo_04_03.model.Likes
 import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.pref.Prefs
 import com.google.firebase.database.FirebaseDatabase
@@ -14,10 +15,9 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
     val binding = LayoutPublicacionBinding.bind(v)
     //preferencias de datos:
     lateinit var prefs: Prefs
-    private var likeFav = false
     lateinit var db: FirebaseDatabase
-    fun render(posts: Publicacion, onItemView: (Any?) -> Unit
-               ,  onItemLike: (Any, Any) -> Unit) {
+    fun render(posts: Publicacion, listaLikes: Likes, onItemView: (Any?) -> Unit
+               , onItemLike: (Any, Any) -> Unit) {
 
 
         //conexion a la base de datos de real time database de mi proyecto de firebase
@@ -31,17 +31,31 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
         binding.tvPost.text = posts.contenido
         binding.tvLikes.text = posts.likes.toString()
         binding.tvFecha.text = convertirFecha(posts.fecha!!)
-     //   val likes = Publicacion.likes!!
-      //  val liked = likes.contains()
+
+        comprobarLikes(email,listaLikes)
+
         itemView.setOnClickListener {
             onItemView(posts.autor)
-           // onItemLike(posts.likes,likeFav)
         }
         binding.btnLike.setOnClickListener{
-            cambiarImgLike()
-            onItemLike(posts,likeFav)
+            comprobarLikes(email,listaLikes)
+            onItemLike(posts,listaLikes)
         }
+
+
     }
+
+    private fun comprobarLikes(email: String?, listaLikes: Likes) {
+
+    if(listaLikes.idUser.contains(email)){
+        binding.btnLike.setImageResource(R.drawable.ic_like_dos)
+    } else{
+        binding.btnLike.setImageResource(R.drawable.ic_like_uno)
+    }
+        println(listaLikes.idUser)
+
+    }
+
 
     private fun convertirFecha(fecha: Long): String {
         val date = Date(fecha)
@@ -49,14 +63,9 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
         return format.format(date)
     }
 
-    private fun cambiarImgLike() {
-        likeFav = !likeFav
-        if(likeFav){
-            binding.btnLike.setImageResource(R.drawable.ic_like_dos)
-        }else{
-            binding.btnLike.setImageResource(R.drawable.ic_like_uno)
-        }
-    }
+
+
+
 
 
 

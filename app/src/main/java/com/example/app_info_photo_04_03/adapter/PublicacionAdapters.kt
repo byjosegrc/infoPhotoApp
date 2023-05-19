@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_info_photo_04_03.R
+import com.example.app_info_photo_04_03.model.Likes
 import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.pref.Prefs
 import com.google.firebase.database.FirebaseDatabase
 
 class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicacion>(),
+                          var listaLikes: ArrayList<Likes> = ArrayList<Likes>(),
                           var onItemView: (Any?) -> Unit,
                           var onItemLike:(Any, Any)-> Unit): RecyclerView.Adapter<PostViewHolder>(){
 
@@ -38,14 +40,10 @@ class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicac
 
         val post = lista[position]
         val likes = post.likes!!.toString().toMutableList()
-//        val liked = likes.contains(Prefs.getEmail)
-
-        holder.render(lista[position], onItemView,onItemLike) //, onItemLike
 
 
-        /* holder.binding.btnLikes.setOnClickListener{
-         //    liked
-         }*/
+        holder.render(lista[position],listaLikes[position], onItemView,onItemLike) //, onItemLike
+
 
 
         holder.binding.btnCompartir.setOnClickListener{

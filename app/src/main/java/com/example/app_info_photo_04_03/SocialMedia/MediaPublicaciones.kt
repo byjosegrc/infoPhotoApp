@@ -21,6 +21,7 @@ import com.example.app_info_photo_04_03.databinding.ActivityForoPublicacionesBin
 import com.example.app_info_photo_04_03.model.Likes
 import com.example.app_info_photo_04_03.model.Perfil
 import com.example.app_info_photo_04_03.model.Publicacion
+import com.example.app_info_photo_04_03.model.Reservas
 import com.example.app_info_photo_04_03.pref.Prefs
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -37,22 +38,33 @@ class MediaPublicaciones : AppCompatActivity() {
     lateinit var db: FirebaseDatabase
     //preferencias de datos:
     lateinit var prefs: Prefs
+
+    var email = ""
     //adapter del foro:
     lateinit var adapter: PublicacionAdapters
+
+
+    var listaLikes = ArrayList<Likes>()
 
     var lista = ArrayList<Publicacion>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityForoPublicacionesBinding.inflate(layoutInflater)
 
         //conexion a la base de datos de real time database de mi proyecto de firebase
         db = FirebaseDatabase.getInstance("https://infophoto-2023-default-rtdb.europe-west1.firebasedatabase.app/")
         prefs = Prefs(this)
+         email = prefs.getEmail().toString()
         setContentView(binding.root)
         setRecycler()
         traerPosts()
+        obtenerLikes()
         setListeners()
+
+
+
 
         //URL DE LA BASE DE DATOS EN STORAGE:
 
@@ -62,6 +74,29 @@ class MediaPublicaciones : AppCompatActivity() {
         configSwipe()
         title="RED SOCIAL"
     }
+
+
+
+    private fun obtenerLikes() {
+        db.getReference("likes").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listaLikes.clear()
+                if (snapshot.exists()) {
+                    for (item in snapshot.children){
+                        val likes = item.getValue(Likes::class.java)
+                        if(likes!=null){
+                            listaLikes.add(likes)
+                        }
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+
+
 
     @SuppressLint("ResourceAsColor")
     private fun configSwipe() {
@@ -92,6 +127,7 @@ class MediaPublicaciones : AppCompatActivity() {
                         var post = item.getValue(Publicacion::class.java)
                         if (post != null) {
                             lista.add(post)
+
                         }
                     }
                     lista.sortBy { posts -> posts.fecha }
@@ -120,14 +156,10 @@ class MediaPublicaciones : AppCompatActivity() {
     }
 
     private fun setRecycler() {
-        adapter = PublicacionAdapters(lista,{
+        adapter = PublicacionAdapters(lista,listaLikes,{
                 post -> onItemView(post as String) }) {
-                publicacion,fav -> onItemLike(publicacion as Publicacion, fav as Boolean)
+                publicacion,modeloLikes -> onItemLike(publicacion as Publicacion, modeloLikes as Likes)
         }
-      //   adapter =     PublicacionAdapters(lista,{onItemLike(it as String,it as Boolean)})
-
-            //like,boton -> onItemLike(like as Int, boton as Boolean)}
-        // {  post -> onItemView(post as String) }
         binding.recAutores.adapter = adapter
         val layoutManager = LinearLayoutManager(this)
         binding.recAutores.layoutManager = layoutManager
@@ -137,36 +169,55 @@ class MediaPublicaciones : AppCompatActivity() {
 
     @SuppressLint("SuspiciousIndentation")
 
-    private fun onItemLike(publicacion: Publicacion, likeFav: Boolean){
+    private fun onItemLike(publicacion: Publicacion, modeloLikes: Likes){
 
 
-        if(likeFav){
-
-       var user1 = Publicacion(publicacion.fecha,publicacion.likes+1,publicacion.autor,
-           publicacion.contenido)
+        var users= ArrayList(modeloLikes.idUser)
 
 
-            //publicacion.contenido,publicacion.likers.add(publicacion.likers.size,prefs.getEmail().toString()))
 
 
-           actualizarLike(user1)
+        if(users.contains(email)){
+            var usuarioClone = ArrayList(users)
+
+            if(users.indexOf(email)==1){
+                users.removeFirst()
+            }else{
+                users.removeAt(users.indexOf(email))
+            }
+
+
+            println("----------------2------------"+users+"---------------2------------")
+
+
+            var modelosLikes = Likes(publicacion.fecha, usuarioClone)
+            var user = Publicacion(publicacion.fecha,publicacion.likes-1,publicacion.autor,publicacion.contenido)
+            actualizarLike(user,modelosLikes)
+        }else{
+            var usuarios = ArrayList(users)
+
+
+            usuarios.add(email)
+
+            println("--------------1--------------"+usuarios+"-------------1--------------")
+
+            var modelosLikes = Likes(publicacion.fecha, usuarios)
+
+            var user = Publicacion(publicacion.fecha,publicacion.likes+1,publicacion.autor,
+                publicacion.contenido)
+            actualizarLike(user,modelosLikes)
         }
 
-        else{
-            var user1 = Publicacion(publicacion.fecha,publicacion.likes-1,publicacion.autor,publicacion.contenido)
-            actualizarLike(user1)
-        }
+
 
     }
 
-
-
-    private fun actualizarLike(autor : Publicacion) {
-
-
-
+    private fun actualizarLike(autor : Publicacion,likes: Likes) {
         db.getReference("posts").child(autor.fecha.toString()).setValue(autor).addOnSuccessListener {
-            traerPosts()
+            db.getReference("likes").child(autor.fecha.toString()).setValue(likes).addOnSuccessListener {
+                traerPosts()
+                obtenerLikes()
+            }
         }
     }
 
