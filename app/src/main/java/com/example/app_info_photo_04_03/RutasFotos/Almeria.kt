@@ -25,7 +25,7 @@ class Almeria : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_granada)
-        title = "ALMERIA CAPITAL"
+        title = "\uD83D\uDCF8 \uD835\uDC00\uD835\uDC0B\uD835\uDC0C\uD835\uDC04\uD835\uDC11\uD835\uDC08\uD835\uDC00 \uD835\uDC02\uD835\uDC00\uD835\uDC0F\uD835\uDC08\uD835\uDC13\uD835\uDC00\uD835\uDC0B"
         createMapFragment()
     }
 

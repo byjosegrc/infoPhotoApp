@@ -72,7 +72,7 @@ class MediaPublicaciones : AppCompatActivity() {
 
         //funcion para configurar el Swipe del chat
         configSwipe()
-        title="RED SOCIAL"
+        title="\uD83D\uDCAC  \uD835\uDC11\uD835\uDC04\uD835\uDC03 \uD835\uDC12\uD835\uDC0E\uD835\uDC02\uD835\uDC08\uD835\uDC00\uD835\uDC0B"
     }
 
 

@@ -18,4 +18,7 @@
     <color name="amarillo">#EAC408</color>
     <color name="fondoNaraja">#FF9800</color>
     <color name="fondoNegro">#FF000000</color>
+    <color name="botonSubir">#00BCD4</color>
+    <color name="botonLimpiar">#FF0000</color>
+    <color name="sobreNotrosBotones">#6A9398</color>
 </resources>

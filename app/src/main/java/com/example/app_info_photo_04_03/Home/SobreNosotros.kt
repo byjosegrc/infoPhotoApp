@@ -43,7 +43,7 @@ class SobreNosotros : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = SobreNosotrosBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        title="\uD83D\uDCF1 SOBRE NOSOTROS"
+        title="\uD83C\uDF10 \uD835\uDC12\uD835\uDC0E\uD835\uDC01\uD835\uDC11\uD835\uDC04 \uD835\uDC0D\uD835\uDC0E\uD835\uDC12\uD835\uDC0E\uD835\uDC13\uD835\uDC11\uD835\uDC0E\uD835\uDC12"
         setListeners()
         mediaController = MediaController(this)
     }
@@ -52,7 +52,7 @@ class SobreNosotros : AppCompatActivity() {
 
     private fun setListeners() {
 
-        binding.cvPlay.setOnClickListener{
+        binding.cvGaleria.setOnClickListener{
            // reproducirVideo()
             startActivity(Intent(this, GaleriaFotografias::class.java))
         }
@@ -60,57 +60,6 @@ class SobreNosotros : AppCompatActivity() {
             startActivity(Intent(this, GoogleMaps1::class.java))
         }
     }
-
-    private fun reproducirVideo() {
-
-        binding.videoView.isVisible = true
-
-
-
-        var aleatorio = (0..1).random()
-        var idVideo = 0
-        when (aleatorio) {
-            0 -> {
-                idVideo = R.raw.video
-            }
-            1 -> {
-                idVideo = R.raw.video1
-            }
-        }
-
-
-
-        rutaVideo = "android.resource://" + packageName + "/$idVideo"
-        var uri = Uri.parse(rutaVideo)
-        try {
-            binding.videoView.setVideoURI(uri)
-            binding.videoView.requestFocus()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        binding.videoView.setMediaController(mediaController)
-        mediaController.setAnchorView(binding.videoView)
-        // binding.videoView.start()
-
-        if (posicion == 0) {
-            binding.videoView.start()
-        } else {
-            binding.videoView.pause()
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        outPersistentState.putInt("POSICION",binding.videoView.currentPosition)
-        binding.videoView.pause()
-    }
-    override fun onRestoreInstanceState(savedInstanceState:Bundle){
-        super.onRestoreInstanceState(savedInstanceState)
-        posicion = savedInstanceState.getInt("POSICION")
-        binding.videoView.seekTo(posicion)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu1,menu)
         return super.onCreateOptionsMenu(menu)

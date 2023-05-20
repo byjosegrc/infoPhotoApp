@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/th"
     tools:context=".Home.HomeActivity">
 
 
@@ -13,8 +12,8 @@
         android:layout_width="134dp"
         android:layout_height="135dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="200dp"
-        app:cardBackgroundColor="@color/letrasBotones"
+        android:layout_marginBottom="400dp"
+        app:cardBackgroundColor="@color/fondoBotones"
         app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,18 +25,13 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/granada" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GRANADA"
                 android:textAllCaps="true"
-                android:textColor="@color/fondoNegro"
+                android:textColor="@color/letrasBotones"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -51,8 +45,8 @@
         android:layout_width="134dp"
         android:layout_height="135dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="200dp"
-        app:cardBackgroundColor="@color/letrasBotones"
+        android:layout_marginBottom="400dp"
+        app:cardBackgroundColor="@color/fondoBotones"
         app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,19 +58,15 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/almeria" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/primera"
                 android:text="ALMERIA"
+                android:textAlignment="viewStart"
                 android:textAllCaps="true"
-                android:textColor="@color/fondoNegro"
-                android:textStyle="bold" />
+                android:textColor="@color/letrasBotones"
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

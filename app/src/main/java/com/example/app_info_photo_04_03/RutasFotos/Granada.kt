@@ -27,7 +27,7 @@ class Granada  : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_granada)
-        title = "ALHAMBRA"
+        title = " \uD83D\uDCF8 \uD835\uDC00\uD835\uDC0B\uD835\uDC07\uD835\uDC00\uD835\uDC0C\uD835\uDC01\uD835\uDC11\uD835\uDC00"
         createMapFragment()
     }
 

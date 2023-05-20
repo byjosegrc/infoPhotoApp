@@ -98,4 +98,20 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+
+    <style name="botonSubir">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/botonSubir</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="botonLimpiar">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/botonLimpiar</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

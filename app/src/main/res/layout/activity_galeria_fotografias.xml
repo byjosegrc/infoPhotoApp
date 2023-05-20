@@ -22,13 +22,13 @@
 
     <TextView
         android:id="@+id/texto"
-        android:layout_width="411dp"
-        android:layout_height="39dp"
+        android:layout_width="409dp"
+        android:layout_height="73dp"
         android:fontFamily="@font/primera"
         android:padding="8dp"
         android:text="NUESTRAS FOTOS"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -13,12 +13,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="412dp"
         android:layout_height="251dp"
-        android:background="#673AB7">
+        android:background="#171220">
 
         <ImageView
             android:id="@+id/ivImagen"
-            android:layout_width="0dp"
-            android:layout_height="123dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:contentDescription="TODO"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"

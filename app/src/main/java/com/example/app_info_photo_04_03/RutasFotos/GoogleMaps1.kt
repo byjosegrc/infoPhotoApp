@@ -26,7 +26,7 @@ class GoogleMaps1 : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_maps1)
-        title="¿DONDE NOS ENCONTRAMOS?"
+        title="\uD83C\uDF0E \uD835\uDC0D\uD835\uDC14\uD835\uDC04\uD835\uDC12\uD835\uDC13\uD835\uDC11\uD835\uDC00 \uD835\uDC12\uD835\uDC04\uD835\uDC03\uD835\uDC04"
         createMapFragment()
     }
 
