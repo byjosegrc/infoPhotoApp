@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <EditText
         android:id="@+id/etNombre"
@@ -43,7 +43,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:fontFamily="@font/primera"
-        android:hint="Introduce tu apellido"
+        android:hint="Introduce tus apellidos"
         android:inputType="textPersonName"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +55,9 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="CIUDAD"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/primera"
+        android:text="SELECCIONA TU LOCALIDAD"
         android:textColor="@color/multimedia"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -86,14 +87,18 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spn_Ciudad"
+        tools:ignore="MissingConstraints"
         tools:srcCompat="@drawable/avatar" />
 
     <Button
         android:id="@+id/btnSubirFoto"
+        android:backgroundTint="@color/botonSubir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Seleccionar Imagen de Perfil"
+        android:text="Seleccionar Imagen"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_subir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,11 +106,14 @@
 
     <Button
         android:id="@+id/btnCancelar"
+        android:backgroundTint="@color/botonLimpiar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:backgroundTint="#FF5722"
+        android:fontFamily="@font/primera"
         android:text="Cancelar"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_cancel"
         app:layout_constraintEnd_toStartOf="@+id/btn_Guardar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,28 +121,17 @@
 
     <Button
         android:id="@+id/btn_Guardar"
+        android:backgroundTint="@color/botonSubir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/primera"
         android:text="Guardar"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_save"
         app:layout_constraintBottom_toBottomOf="@+id/btnCancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar"
         app:layout_constraintTop_toTopOf="@+id/btnCancelar" />
 
-    <TextView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/primera"
-        android:text="- MODIFICAR PERFIL -"
-        android:textColor="@color/home"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="NotSibling" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -103,7 +103,9 @@ class MediaPublicaciones : AppCompatActivity() {
         //colores
         binding.swipeMedia.setColorSchemeColors(R.color.rojo,R.color.amarillo,R.color.verde)
 
-        binding.swipeMedia.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(this,R.color.rojo))
+        binding.swipeMedia.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(this,
+            R.color.botonSubir
+        ))
 
         //listener para el swipe del chat
         binding.swipeMedia.setOnRefreshListener {

@@ -42,11 +42,9 @@ class ReservasActivity : AppCompatActivity() {
     var tipoSesion = ""
     var tipoPack = ""
     var precio = ""
-    var pack = "Estándar: Fotos +Edición " +
-            "Estándar: Fotos +Edición" +
-            "Estándar: Fotos +Edición"
-    //Lista Fechas:
 
+
+    //Lista Fechas:
     var listaFechas = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +60,7 @@ class ReservasActivity : AppCompatActivity() {
         setListeners()
         obtenerReservas()
         //Titulo del activity:
-        title = "RESERVA SESIONES"
+        title =" \uD83D\uDCF7 𝐑𝐄𝐒𝐄𝐑𝐕𝐀 𝐃𝐄 𝐒𝐄𝐒𝐈𝐎𝐍𝐄𝐒"
 
 
     }
@@ -153,46 +151,46 @@ class ReservasActivity : AppCompatActivity() {
         binding.tvPrecio.text = precio
 
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Estándar")){
-            precio = "250";
+            precio = "150€";
             binding.tvPrecio.text = precio
             println("ENTROOO--------------------------------> $precio  <-------------------")
         }
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Medio")){
-            precio = "350";
+            precio = "250€";
             binding.tvPrecio.text = ("$precio")
         }
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Bautizo")and binding.spnPack.getSelectedItem().toString().trim().equals("Delux")){
-            precio = "450";
+            precio = "350€";
             binding.tvPrecio.text = ("$precio")
         }
 
         //COMUNION:
 
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Estándar")){
-            precio = "400";
+            precio = "350€";
             binding.tvPrecio.text = ("$precio")
         }
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Medio")){
-            precio = "600";
+            precio = "450€";
             binding.tvPrecio.text = ("$precio")
         }
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Comunion")and binding.spnPack.getSelectedItem().toString().trim().equals("Delux")){
-            precio = "800";
+            precio = "480€";
             binding.tvPrecio.text = ("$precio")
         }
 
         //BODA
 
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Estándar")){
-            precio = "1000";
+            precio = "300€";
             binding.tvPrecio.text = ("$precio")
         }
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Medio")){
-            precio = "1200"
+            precio = "500€"
             binding.tvPrecio.text = ("$precio")
         }
         if (binding.spnTipo.getSelectedItem().toString().trim().equals("Boda")and binding.spnPack.getSelectedItem().toString().trim().equals("Delux")){
-            precio = "1500";
+            precio = "600€";
             binding.tvPrecio.text = ("$precio")
         }
 

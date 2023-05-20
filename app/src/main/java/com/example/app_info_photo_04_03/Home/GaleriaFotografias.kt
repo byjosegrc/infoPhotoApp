@@ -23,6 +23,7 @@ class GaleriaFotografias : AppCompatActivity() {
         setContentView(binding.root)
         setRecyclerView()
         traerImagenes("Almeria")
+        title ="\uD83D\uDCF8 \uD835\uDC06\uD835\uDC00\uD835\uDC0B\uD835\uDC04\uD835\uDC11\uD835\uDC08\uD835\uDC00 \uD835\uDC05\uD835\uDC0E\uD835\uDC13\uD835\uDC0E\uD835\uDC12"
     }
 
     private fun setRecyclerView() {

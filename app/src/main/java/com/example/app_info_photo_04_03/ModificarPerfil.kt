@@ -65,6 +65,7 @@ class ModificarPerfil : AppCompatActivity() {
 
         setContentView(binding.root)
         setListeners()
+        title = "\uD83D\uDC65 \uD835\uDC0C\uD835\uDC0E\uD835\uDC03\uD835\uDC08\uD835\uDC05\uD835\uDC08\uD835\uDC02\uD835\uDC00\uD835\uDC11 \uD835\uDC14\uD835\uDC12\uD835\uDC14\uD835\uDC00\uD835\uDC11\uD835\uDC08\uD835\uDC0E"
     }
 
     private fun setListeners() {

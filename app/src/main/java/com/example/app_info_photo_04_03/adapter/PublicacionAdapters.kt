@@ -40,30 +40,7 @@ class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicac
 
         val post = lista[position]
         val likes = post.likes!!.toString().toMutableList()
-
-
-        holder.render(lista[position],listaLikes[position], onItemView,onItemLike) //, onItemLike
-
-
-
-        holder.binding.btnCompartir.setOnClickListener{
-            val sendIntent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, post.contenido)
-                type = "text/plain"
-
-            }
-
-
-            val shareIntent = Intent.createChooser(sendIntent, null)
-
-
-            startActivity(shareIntent)
-
-        }
-
-
-
+        holder.render(lista[position],listaLikes[position], onItemView,onItemLike)
     }
 
     private fun startActivity(shareIntent: Intent?) {

@@ -47,6 +47,7 @@ class PerfilUsuario : AppCompatActivity() {
         setContentView(binding.root)
         setListeners()
         obtenerDatos()
+        title = "\uD83D\uDC65 \uD835\uDC0F\uD835\uDC04\uD835\uDC11\uD835\uDC05\uD835\uDC08\uD835\uDC0B \uD835\uDC14\uD835\uDC12\uD835\uDC14\uD835\uDC00\uD835\uDC11\uD835\uDC08\uD835\uDC0E"
 
 
         binding.bottomNavigationView.setOnItemSelectedListener {
