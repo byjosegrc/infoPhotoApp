@@ -15,7 +15,7 @@ class RutasGoogle : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rutas_google)
-        title="RUTAS FOTOS"
+        title="\uD83D\uDCCC \uD835\uDC11\uD835\uDC14\uD835\uDC13\uD835\uDC00\uD835\uDC12 \uD835\uDC05\uD835\uDC0E\uD835\uDC13\uD835\uDC0E\uD835\uDC12"
         binding= ActivityRutasGoogleBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setListener()

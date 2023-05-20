@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DCDADB"
     tools:context=".Home.GaleriaFotografias">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -27,6 +26,7 @@
         android:fontFamily="@font/primera"
         android:padding="8dp"
         android:text="NUESTRAS FOTOS"
+        android:textColor="@color/fondoNaraja"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"
