@@ -12,7 +12,7 @@ import com.example.app_info_photo_04_03.pref.Prefs
 import com.google.firebase.database.FirebaseDatabase
 
 class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicacion>(),
-                          var listaLikes: ArrayList<Likes> = ArrayList<Likes>(),
+                          //var listaLikes: ArrayList<Likes> = ArrayList<Likes>(),
                           var onItemView: (Any?) -> Unit,
                           var onItemLike:(Any, Any)-> Unit): RecyclerView.Adapter<PostViewHolder>(){
 
@@ -38,9 +38,11 @@ class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicac
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
 
-        val post = lista[position]
-        val likes = post.likes!!.toString().toMutableList()
-        holder.render(lista[position],listaLikes[position], onItemView,onItemLike)
+    //    val post = lista[position]
+    //    val likes = post.likes!!.toString().toMutableList()
+
+        holder.render(lista[position], onItemView,onItemLike)
+
     }
 
     private fun startActivity(shareIntent: Intent?) {

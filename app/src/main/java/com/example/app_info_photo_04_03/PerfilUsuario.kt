@@ -94,15 +94,6 @@ class PerfilUsuario : AppCompatActivity() {
 
                     val u = snapshot.child(prefs.getEmail().toString().replace(".", "-")).getValue(Perfil::class.java)
 
-
-
-                    // val u = usuarios.getValue(Perfil::class.java)
-
-
-           //     val datos = intent.getStringExtra("email")
-
-          //      val prueba = u.getValue(Perfil::class.java)
-
                    if(u != null){
                         binding.tvNombre.text =  u.nombre //"Pepe"
                         binding.tvApellido.text = u.apellido //"Garcia"
@@ -110,13 +101,7 @@ class PerfilUsuario : AppCompatActivity() {
                         //recoger imagen
                         u.email?.let { recogerImagen(it) }
 
-                       println("----------------------------------")
-
                     }
-                 //   println("---------------$autor-----------------")
-                    println("---------------$u-----------------")
-
-             //   println("--------------------$prueba---------------")
 
             }
         }
@@ -125,47 +110,6 @@ class PerfilUsuario : AppCompatActivity() {
             }
         })
     }
-
-       /* db.getReference("perfiles").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val perfil = snapshot.child(intent.getStringExtra("email").toString().replace(".", "-")).getValue(Perfil::class.java)
-                //if (perfil != null) {
-                    binding.tvNombre.text =  perfil.nombre //"Pepe"
-                    binding.tvApellido.text = perfil.apellido //"Garcia"
-                    binding.tvCiudad.text = perfil.ciudad //"Granada"
-
-                    //recoger imagen
-                  //  recogerImagen(perfil.email)
-
-               // }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-    }*/
-
-
-  /*  private fun recogerImagen(email: String?) {
-        val ref = storage.reference
-        val imagen = ref.child("$email/perfil.jpg")
-        imagen.metadata.addOnSuccessListener {
-            //Existe el archivo
-            Log.d("Perfil EMAIL", "existe la imagen")
-            imagen.downloadUrl.addOnSuccessListener {
-                Picasso.get().load(it).into(binding.ivAvatar)
-            }
-
-        } .addOnFailureListener {
-            //No existe el archivo, sacamos el por defecto
-            val default = storage.getReference("default/perfil.png")
-            default.downloadUrl.addOnSuccessListener {
-                Picasso.get().load(it).into(binding.ivAvatar)
-            }
-        }
-    */
-
 
     private fun recogerImagen(email: String) {
         //compruebo si tiene imagen o no

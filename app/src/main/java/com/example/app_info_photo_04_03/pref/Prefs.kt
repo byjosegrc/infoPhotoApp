@@ -28,6 +28,15 @@ class Prefs(c: Context) {
         storage.edit().clear().apply()
     }
 
+    fun getLike():Int{
+
+        return storage.getInt("LIKES",0)
+    }
+
+    fun setLike(likes:Int){
+        storage.edit().putInt("LIKES",likes).apply()
+    }
+
 
 
     fun setPublicLikes(Likes:Int){

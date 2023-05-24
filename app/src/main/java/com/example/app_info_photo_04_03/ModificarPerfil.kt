@@ -26,6 +26,10 @@ class ModificarPerfil : AppCompatActivity() {
         }
     }
 
+
+    /**
+     *
+     */
     private fun guardarImagen(uri: Uri) {
         val ref = storage.reference
         val imagen = ref.child("${prefs.getEmail()}/perfil.jpg")
@@ -68,6 +72,15 @@ class ModificarPerfil : AppCompatActivity() {
         title = "\uD83D\uDC65 \uD835\uDC0C\uD835\uDC0E\uD835\uDC03\uD835\uDC08\uD835\uDC05\uD835\uDC08\uD835\uDC02\uD835\uDC00\uD835\uDC11 \uD835\uDC14\uD835\uDC12\uD835\uDC14\uD835\uDC00\uD835\uDC11\uD835\uDC08\uD835\uDC0E"
     }
 
+
+    /**
+     *Funcion de listeners de los botones del activity modificar perfil
+     * Botones: btnCancelar, btnSubirFoto ,btnGuardar
+     *
+     * -> btnCancelar: cancela la accion
+     * -> btnSubirFoto: boton para abrir el dialogo de seleccion de fotos en el dispositivo
+     * -> btnGuardar: boton que guardara los datos modificados del usuario modificados
+     * */
     private fun setListeners() {
         binding.btnCancelar.setOnClickListener {
             finish()
@@ -80,6 +93,10 @@ class ModificarPerfil : AppCompatActivity() {
         }
     }
 
+
+    /**
+     * Funcion que guarda los datos del usuario: nombre, apellidos, ciudad
+     */
     private fun guardarAutor() {
         //Nombre
         nombre = binding.etNombre.text.toString().trim()
@@ -102,20 +119,25 @@ class ModificarPerfil : AppCompatActivity() {
         val autor = Perfil(prefs.getEmail(), nombre, apellido , ciudad)
 
         //conexion db
-
-    //    db = FirebaseDatabase.getInstance().getReference("Perfil")
-
         db.getReference("perfiles").child(prefs.getEmail().toString().replace(".", "-")).setValue(autor).addOnSuccessListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
 
     }
 
+    /**
+     * funcion de onCreateOptionsMenu() es el que nos va a permitir inflar nuestro menú, es decir, hacer
+     * que las opciones definidas en el fichero XML tengan su propia apariencia dentro de nuestra aplicación Android.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu1,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * En este método, puedes aumentar el recurso de menú (definido en XML) hacia el Menu proporcionado
+     * en la devolución de llamada
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.inicio ->{

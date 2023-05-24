@@ -157,6 +157,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
+
     <TextView
         android:id="@+id/tvApellido"
         android:layout_width="wrap_content"
@@ -165,7 +166,8 @@
         android:layout_marginEnd="119dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
     <TextView

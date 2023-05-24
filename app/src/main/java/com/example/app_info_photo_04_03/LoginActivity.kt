@@ -45,6 +45,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= LoginMainBinding.inflate(layoutInflater)
@@ -61,15 +67,23 @@ class LoginActivity : AppCompatActivity() {
 
         prefs= Prefs(this)
         comprobarSesion()
-        setUp()
+        setListener()
     }
 
-    private fun setUp() {
+
+    /**
+     *Esta es la funcion de listener para el boton de login abrir el dialogo de cuentas de google y
+     * asi iniciar sesion en la app
+     */
+    private fun setListener() {
 
         binding.btnGoogle.setOnClickListener{
             login()
         }
     }
+    /**
+     *Esta es la funcion login la cual realiza el login del user en la app
+     */
     private fun login() {
         val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             //lo encontramos en el json de la aplicación
@@ -85,11 +99,17 @@ class LoginActivity : AppCompatActivity() {
         responseLauncher.launch(googleClient.signInIntent)
     }
 
-
+    /**
+     * Esta funcion hace que mande al usuario a la venta de HOME cuando inicia sesión correctamente
+     */
     private fun irHome(){
         startActivity(Intent(this, HomeActivity::class.java))
     }
 
+    /**
+     * Esta funcion va a comprobar que si la sesion esta inicia en vez de volver de preguntar al usuario sus datos de acceso
+     * gracias a las preferencia en las que esta guarda la sesion de tal usuario por el identificardor de correo
+     */
     private fun comprobarSesion() {
         val email= prefs.getEmail()
         Log.d("------------------------->EMAIL", email.toString())
@@ -97,40 +117,4 @@ class LoginActivity : AppCompatActivity() {
             irHome()
         }
     }
-
-
-
-    /* private fun login() {
-         //Configuracion de la autenticacion de google:
-
-         val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-             .requestIdToken(getString(R.string.default_web_client_id))
-             .requestEmail()
-             .build()
-         //----------------
-
-         val googleCliente: GoogleSignInClient = GoogleSignIn.getClient(this, googleConf)
-         startActivityForResult(googleCliente.signInIntent,GOOGLE_SIGN_IN)
-
-     //DEFAULT_SIGN_IN ya que por defecto voy a logear los usarios por google
-     }
-
-     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-         super.onActivityResult(requestCode, resultCode, data)
-         if(requestCode ==GOOGLE_SIGN_IN){
-         val task  = GoogleSignIn.getSignedInAccountFromIntent(data)
-             try {
-                 val account = task.getResult(ApiException::class.java)
-
-                 if (account != null) {
-                     val credencial = GoogleAuthProvider.getCredential(account.idToken, null)
-                     FirebaseAuth.getInstance().signInWithCredential(credencial)
-                 }
-             }catch (e: ApiException){
-                 showLockTaskEscapeMessage()
-             }
-         }
-     }*/
-
-
 }

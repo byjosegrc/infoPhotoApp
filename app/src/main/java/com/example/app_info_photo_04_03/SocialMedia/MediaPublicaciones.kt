@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import kotlin.concurrent.thread
 
 class MediaPublicaciones : AppCompatActivity() {
     //variables:
@@ -60,12 +61,7 @@ class MediaPublicaciones : AppCompatActivity() {
         setContentView(binding.root)
         setRecycler()
         traerPosts()
-        obtenerLikes()
         setListeners()
-
-
-
-
         //URL DE LA BASE DE DATOS EN STORAGE:
 
         storage = FirebaseStorage.getInstance("gs://infophoto-2023.appspot.com")
@@ -75,49 +71,25 @@ class MediaPublicaciones : AppCompatActivity() {
         title="\uD83D\uDCAC  \uD835\uDC11\uD835\uDC04\uD835\uDC03 \uD835\uDC12\uD835\uDC0E\uD835\uDC02\uD835\uDC08\uD835\uDC00\uD835\uDC0B"
     }
 
-
-
-    private fun obtenerLikes() {
-        db.getReference("likes").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                listaLikes.clear()
-                if (snapshot.exists()) {
-                    for (item in snapshot.children){
-                        val likes = item.getValue(Likes::class.java)
-                        if(likes!=null){
-                            listaLikes.add(likes)
-                        }
-                    }
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-    }
-
-
-
-
     @SuppressLint("ResourceAsColor")
     private fun configSwipe() {
-        //colores
-        binding.swipeMedia.setColorSchemeColors(R.color.rojo,R.color.amarillo,R.color.verde)
-
         binding.swipeMedia.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(this,
             R.color.botonSubir
         ))
-
         //listener para el swipe del chat
         binding.swipeMedia.setOnRefreshListener {
-
             //efecto de carga
             Handler(Looper.getMainLooper()).postDelayed({
                 //dentro de 5 segundos se para la animacion:
                 binding.swipeMedia.isRefreshing = false
-            },3000)
+            },5000)
 
         }
     }
+
+    /**
+     *
+     */
 
     private fun traerPosts() {
         db.getReference("posts").addValueEventListener(object : ValueEventListener {
@@ -129,13 +101,14 @@ class MediaPublicaciones : AppCompatActivity() {
                         var post = item.getValue(Publicacion::class.java)
                         if (post != null) {
                             lista.add(post)
-
                         }
                     }
-                    lista.sortBy { posts -> posts.fecha }
+                    lista.sortBy {
+                            posts -> posts.fecha
+                    }
                     adapter.lista = lista
                     adapter.notifyDataSetChanged()
-                    binding.recAutores.scrollToPosition(lista.size - 1)
+                 //   binding.recAutores.scrollToPosition(lista.size - 1)
 
                 }
             }
@@ -147,94 +120,146 @@ class MediaPublicaciones : AppCompatActivity() {
         })
     }
 
+    /**
+     *
+     */
     private fun setListeners() {
         binding.btnAdd.setOnClickListener {
             irAddActivity()
         }
     }
-//{ onItemView(it as String) }
+
+    /**
+     *
+     */
     private fun irAddActivity() {
         startActivity(Intent(this, addPublicacion::class.java))
     }
 
+    /**
+     *
+     */
     private fun setRecycler() {
-        adapter = PublicacionAdapters(lista,listaLikes,{
+        adapter = PublicacionAdapters(lista,{
                 post -> onItemView(post as String) }) {
-                publicacion,modeloLikes -> onItemLike(publicacion as Publicacion, modeloLikes as Likes)
+                email,publi -> onItemLike(email as String, publi as Publicacion)
         }
         binding.recAutores.adapter = adapter
         val layoutManager = LinearLayoutManager(this)
         binding.recAutores.layoutManager = layoutManager
 
+
         }
 
 
     @SuppressLint("SuspiciousIndentation")
+    /**
+     *
+     */
+        private fun onItemLike(email: String?, publi: Publicacion) {
+            var encontradoLike = false
+            val comprobacion = ArrayList<String>()
 
-    private fun onItemLike(publicacion: Publicacion, modeloLikes: Likes){
+            db.getReference("likes").child(publi.fecha.toString()).child("idUser").get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val dataSnapshot = task.result
+                        for (childSnapshot in dataSnapshot.children) {
+                            val data = childSnapshot.getValue(String::class.java)
+                            data?.let {
+                                comprobacion.add(it)
+                            }
+                        }
 
+                        // Handle the data-dependent logic here
+                        for (likes in comprobacion) {
+                            if (likes == email.toString().replace(".", "-")) {
+                                encontradoLike = true
+                            }
+                        }
 
-        var users= ArrayList(modeloLikes.idUser)
+                        // Perform actions based on the retrieved data
+                        if (!encontradoLike) {
+                            db.getReference("likes").child(publi.fecha.toString())
+                                .child("idUser")
+                                .child(email.toString().replace(".", "-"))
+                                .setValue(email.toString().replace(".", "-"))
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        traerPosts()
+                                        println("--------------------------------------- DA LIKE")
 
-
-
-
-        if(users.contains(email)){
-            var usuarioClone = ArrayList(users)
-
-            if(users.indexOf(email)==1){
-                users.removeFirst()
-            }else{
-                users.removeAt(users.indexOf(email))
-            }
-
-
-            println("----------------2------------"+users+"---------------2------------")
-
-
-            var modelosLikes = Likes(publicacion.fecha, usuarioClone)
-            var user = Publicacion(publicacion.fecha,publicacion.likes-1,publicacion.autor,publicacion.contenido)
-            actualizarLike(user,modelosLikes)
-        }else{
-            var usuarios = ArrayList(users)
-
-
-            usuarios.add(email)
-
-            println("--------------1--------------"+usuarios+"-------------1--------------")
-
-            var modelosLikes = Likes(publicacion.fecha, usuarios)
-
-            var user = Publicacion(publicacion.fecha,publicacion.likes+1,publicacion.autor,
-                publicacion.contenido)
-            actualizarLike(user,modelosLikes)
+                                    } else {
+                                        // Handle the error, if any
+                                    }
+                                }
+                            db.getReference("posts").child(publi.fecha.toString()).child("likes")
+                                .setValue(comprobacion.size).addOnCanceledListener {
+                                    traerPosts()
+                                }
+                        } else {
+                            db.getReference("likes").child(publi.fecha.toString())
+                                .child("idUser")
+                                .child(email.toString().replace(".", "-")).removeValue()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        println("--------------------------------------- QUITA LIKE")
+                                    } else {
+                                        // Handle the error, if any
+                                    }
+                                }
+                            db.getReference("posts").child(publi.fecha.toString()).child("likes")
+                                .setValue(comprobacion.size).addOnCanceledListener {
+                                    traerPosts()
+                                }
+                        }
+                        comprobacion.clear()
+                        db.getReference("likes").child(publi.fecha.toString()).child("idUser").get()
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    val dataSnapshot = task.result
+                                    for (childSnapshot in dataSnapshot.children) {
+                                        val data = childSnapshot.getValue(String::class.java)
+                                        data?.let {
+                                            comprobacion.add(it)
+                                        }
+                                    }
+                                }
+                                db.getReference("posts").child(publi.fecha.toString()).child("likes")
+                                    .setValue(comprobacion.size).addOnCanceledListener {
+                                        traerPosts()
+                                    }
+                            }
+                    }
+                    else {
+                        // Handle the error, if any
+                    }
+                }
+        traerPosts()
         }
 
 
-
-    }
-
-    private fun actualizarLike(autor : Publicacion,likes: Likes) {
-        db.getReference("posts").child(autor.fecha.toString()).setValue(autor).addOnSuccessListener {
-            db.getReference("likes").child(autor.fecha.toString()).setValue(likes).addOnSuccessListener {
-                traerPosts()
-                obtenerLikes()
-            }
-        }
-    }
-
-
-
-
-
+    /**
+     *
+     */
     private fun onItemView(it: String) {
-        startActivity(Intent(this, PerfilUsuario::class.java).putExtra("email", it))
+        Toast.makeText(this,"¿QUIERES PUBLICAR UN POST?",Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, PerfilUsuario::class.java))
     }
 
+    /**
+     * funcion de onCreateOptionsMenu() es el que nos va a permitir inflar nuestro menú, es decir, hacer
+     * que las opciones definidas en el fichero XML tengan su propia apariencia dentro de nuestra aplicación Android.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu1, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    /**
+     * En este método, puedes aumentar el recurso de menú (definido en XML) hacia el Menu proporcionado
+     * en la devolución de llamada
+     */
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -246,13 +271,13 @@ class MediaPublicaciones : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+
+    /**
+     *hace que el usuario pueda ver la actividad mientras la app se prepara para que esta entre en primer plano
+     * y se convierta en interactiva. Por ejemplo, este método es donde la app inicializa el código que mantiene la IU.
+     */
     override fun onRestart() {
         traerPosts()
         super.onRestart()
     }
-
-    private fun mostrarAlerta(s: String) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
-    }
-
 }

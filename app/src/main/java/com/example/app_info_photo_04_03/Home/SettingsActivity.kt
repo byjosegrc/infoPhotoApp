@@ -23,7 +23,7 @@ class SettingsActivity : AppCompatActivity() {
 
         binding= ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        title="AJUSTES"
+        title="\uD83D\uDD29 \uD835\uDC00\uD835\uDC09\uD835\uDC14\uD835\uDC12\uD835\uDC13\uD835\uDC04\uD835\uDC12"
 
 
         //Creo la variable de tema oscuro:

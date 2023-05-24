@@ -5,5 +5,4 @@ data class Perfil(
     var nombre: String? = null,
     var apellido: String? = null,
     var ciudad: String? = null,
-   // var postLikes: MutableList<Publicacion> = mutableListOf()
 )

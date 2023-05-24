@@ -7,7 +7,10 @@ import com.example.app_info_photo_04_03.databinding.LayoutPublicacionBinding
 import com.example.app_info_photo_04_03.model.Likes
 import com.example.app_info_photo_04_03.model.Publicacion
 import com.example.app_info_photo_04_03.pref.Prefs
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -16,7 +19,7 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
     //preferencias de datos:
     lateinit var prefs: Prefs
     lateinit var db: FirebaseDatabase
-    fun render(posts: Publicacion, listaLikes: Likes, onItemView: (Any?) -> Unit
+    fun render(posts: Publicacion, onItemView: (Any?) -> Unit
                , onItemLike: (Any, Any) -> Unit) {
 
 
@@ -25,27 +28,60 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
 
         prefs = Prefs(binding.tvEmail.context)
 
-        val email = prefs.getEmail()
+
+        val email:String? = prefs.getEmail()
 
         binding.tvEmail.text = posts.autor
         binding.tvPost.text = posts.contenido
         binding.tvLikes.text = posts.likes.toString()
         binding.tvFecha.text = convertirFecha(posts.fecha!!)
 
-        comprobarLikes(email,listaLikes)
+        comprobarLikes(email,posts)
 
         itemView.setOnClickListener {
             onItemView(posts.autor)
         }
         binding.btnLike.setOnClickListener{
-            comprobarLikes(email,listaLikes)
-            onItemLike(posts,listaLikes)
+            if (email != null) {
+                onItemLike(email,posts)
+            }
+            comprobarLikes(email,posts)
         }
 
 
     }
 
-    private fun comprobarLikes(email: String?, listaLikes: Likes) {
+    private fun comprobarLikes(email: String?, posts: Publicacion) {
+
+        var encontrado = false
+
+
+        db.getReference("likes").child(posts.fecha.toString()).child("idUser").get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val dataSnapshot = task.result
+                    for (childSnapshot in dataSnapshot.children) {
+                        val data = childSnapshot.getValue(String::class.java)
+                        if(data.equals(email.toString().replace(".","-"))){
+                            encontrado=true
+                        }
+                    }
+                    // Perform actions based on the retrieved data
+
+                    if (!encontrado) {
+                        binding.btnLike.setImageResource(R.drawable.ic_like_uno)
+                    } else {
+                        binding.btnLike.setImageResource(R.drawable.ic_like_dos)
+                    }
+                } else {
+                    // Handle the error, if any
+                }
+            }
+
+
+    }
+
+    /*private fun comprobarLikes(email: String?, listaLikes: Likes) {
 
     if(listaLikes.idUser.contains(email)){
         binding.btnLike.setImageResource(R.drawable.ic_like_dos)
@@ -54,7 +90,7 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
     }
         println(listaLikes.idUser)
 
-    }
+    }*/
 
 
     private fun convertirFecha(fecha: Long): String {

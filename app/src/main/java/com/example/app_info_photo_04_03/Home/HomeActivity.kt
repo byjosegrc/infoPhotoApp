@@ -78,25 +78,6 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
-
-   /* private fun setToolbar() {
-        val toolbar: Toolbar = binding.mainToolbar
-        setSupportActionBar(toolbar)
-        var drawerLayout = binding.drawerLayout
-        var navigationView = binding.navView
-
-        var actionBarDrawerToggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.openNavDrawer,
-            R.string.closeNavDrawer
-        )
-        drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
-        navigationView.setNavigationItemSelectedListener(this)
-    }*/
-
     private fun initComponents() {
         rutasFotos = findViewById(R.id.cvRutas)
         sobreNosotrosInfo = findViewById(R.id.cvSobreNosotros)
