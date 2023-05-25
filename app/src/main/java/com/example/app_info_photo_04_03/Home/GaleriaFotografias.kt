@@ -26,6 +26,9 @@ class GaleriaFotografias : AppCompatActivity() {
         title ="\uD83D\uDCF8 \uD835\uDC06\uD835\uDC00\uD835\uDC0B\uD835\uDC04\uD835\uDC11\uD835\uDC08\uD835\uDC00 \uD835\uDC05\uD835\uDC0E\uD835\uDC13\uD835\uDC0E\uD835\uDC12"
     }
 
+    /**
+     *Funcioon para el setRecyclerView del activity para llamar al adapter
+     */
     private fun setRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.recPix.layoutManager = layoutManager
@@ -34,6 +37,9 @@ class GaleriaFotografias : AppCompatActivity() {
 
     }
 
+    /**
+     * Funcion traerImagenes consumir por pantalla  20 fotos de la api PixaBay
+     */
     private fun traerImagenes(termino: String) {
         lifecycleScope.launch{
         val datos = ApiClient.service.getImages(key, termino)

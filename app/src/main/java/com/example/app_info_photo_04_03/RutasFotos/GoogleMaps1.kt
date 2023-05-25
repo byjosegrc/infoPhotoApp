@@ -23,6 +23,11 @@ class GoogleMaps1 : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var map:GoogleMap
 
     lateinit var prefs: Prefs
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_maps1)
@@ -30,16 +35,27 @@ class GoogleMaps1 : AppCompatActivity(), OnMapReadyCallback {
         createMapFragment()
     }
 
+    /**
+     * esta funcion es para crear el Fragment del mapa
+     */
     private fun createMapFragment() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.Maps)as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     @SuppressLint("SuspiciousIndentation")
+    /**
+     * la función onMapReady(), que se llamará automáticamente cuando el mapa haya cargado.
+     * Es por eso que nuestra activity nos marca un error, pues no hemos sobrescrito el método todavía.
+     */
     override fun onMapReady(googleMaps: GoogleMap) {
             map = googleMaps
             createMarker()
     }
+
+    /**
+     * Funcion para crear los marcador de nuestra sede
+     */
         private fun createMarker() {
 
             //UBICACION SEDE
@@ -58,11 +74,19 @@ class GoogleMaps1 : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-
+    /**
+     * funcion de onCreateOptionsMenu() es el que nos va a permitir inflar nuestro menú, es decir, hacer
+     * que las opciones definidas en el fichero XML tengan su propia apariencia dentro de nuestra aplicación Android.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu1, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    /**
+     * En este método, puedes aumentar el recurso de menú (definido en XML) hacia el Menu proporcionado
+     * en la devolución de llamada
+     */
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

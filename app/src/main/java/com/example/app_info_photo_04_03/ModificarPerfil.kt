@@ -28,7 +28,7 @@ class ModificarPerfil : AppCompatActivity() {
 
 
     /**
-     *
+     * Funcion para guardar la imagen seleccinado del dispositivo  en storage
      */
     private fun guardarImagen(uri: Uri) {
         val ref = storage.reference
@@ -51,7 +51,11 @@ class ModificarPerfil : AppCompatActivity() {
     var apellido = ""
     var ciudad = ""
 
-
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityModificarPerfilBinding.inflate(layoutInflater)

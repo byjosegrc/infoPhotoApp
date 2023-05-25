@@ -19,15 +19,16 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
     //preferencias de datos:
     lateinit var prefs: Prefs
     lateinit var db: FirebaseDatabase
+
+    /**
+     * funcion para rellenar el contenido de datos de cada post el autor, fecha publicacion, numeros de likes y contenido del post
+     */
     fun render(posts: Publicacion, onItemView: (Any?) -> Unit
                , onItemLike: (Any, Any) -> Unit) {
 
 
         //conexion a la base de datos de real time database de mi proyecto de firebase
         db = FirebaseDatabase.getInstance("https://infophoto-2023-default-rtdb.europe-west1.firebasedatabase.app/")
-
-        prefs = Prefs(binding.tvEmail.context)
-
 
         val email:String? = prefs.getEmail()
 
@@ -38,9 +39,12 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
 
         comprobarLikes(email,posts)
 
+
         itemView.setOnClickListener {
             onItemView(posts.autor)
         }
+
+
         binding.btnLike.setOnClickListener{
             if (email != null) {
                 onItemLike(email,posts)
@@ -51,6 +55,17 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
 
     }
 
+
+    /**
+     * Funcion para comprar si se ha dado like cambiar el corazon a rojo de lo contrario estara vacio
+     *
+     * Para ello tengo que leer en firebase si se ha dado like al post la "variable encontrado se podria a true"
+     *
+     * si encontrado es true se pondria a corazon vacio
+     *
+     * si en caso de no ser encontrado se podria a rojo
+     *
+     */
     private fun comprobarLikes(email: String?, posts: Publicacion) {
 
         var encontrado = false
@@ -74,25 +89,16 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
                         binding.btnLike.setImageResource(R.drawable.ic_like_dos)
                     }
                 } else {
-                    // Handle the error, if any
                 }
             }
 
 
     }
 
-    /*private fun comprobarLikes(email: String?, listaLikes: Likes) {
 
-    if(listaLikes.idUser.contains(email)){
-        binding.btnLike.setImageResource(R.drawable.ic_like_dos)
-    } else{
-        binding.btnLike.setImageResource(R.drawable.ic_like_uno)
-    }
-        println(listaLikes.idUser)
-
-    }*/
-
-
+    /**
+     * Funcion para convertir la fecha a milisegundos
+     */
     private fun convertirFecha(fecha: Long): String {
         val date = Date(fecha)
         val format = SimpleDateFormat("dd/MM/yyyy h:m:ss")

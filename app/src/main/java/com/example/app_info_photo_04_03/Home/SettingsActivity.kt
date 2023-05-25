@@ -18,6 +18,13 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 class SettingsActivity : AppCompatActivity() {
     lateinit var binding: ActivitySettingsBinding
     lateinit var prefs: Prefs
+
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -67,10 +74,16 @@ class SettingsActivity : AppCompatActivity() {
     }
 
 
-
-
-
-
+    /**
+     * Funcion para el listener de los botones  btnOscuro y  btnClaro
+     *
+     * Donde ...
+     *
+     * btnClaro -> Habilita el tema claro
+     *
+     * btnOscuro -> Habilita el tema oscuro
+     *
+     */
     private fun setListener() {
         //tema oscuro
 
@@ -86,26 +99,40 @@ class SettingsActivity : AppCompatActivity() {
     }
 
 
+    /**
+     *     ACTIVA EL TEMA OSCURO EN LA APP
+     */
 
-
-    //ENABLE EL TEMA OSCURO
     private fun enableDarkMode(){
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
         delegate.applyDayNight()
     }
 
-    //DESABILITADO EL TEMA OSCURO
+    /**
+     *   DESACTIVA EL TEMA OSCURO EN LA APP
+     */
+
     private fun disableDarkMode(){
         Log.d("EMAIL  SITCH", "entre en la funcion")
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
         delegate.applyDayNight()
     }
 
+
+    /**
+     * funcion de onCreateOptionsMenu() es el que nos va a permitir inflar nuestro menú, es decir, hacer
+     * que las opciones definidas en el fichero XML tengan su propia apariencia dentro de nuestra aplicación Android.
+     */
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu1,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * En este método, puedes aumentar el recurso de menú (definido en XML) hacia el Menu proporcionado
+     * en la devolución de llamada
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.inicio ->{

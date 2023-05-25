@@ -19,6 +19,11 @@ class addPublicacion : AppCompatActivity() {
         lateinit var binding: ActivityAddPublicacionBinding
         lateinit var prefs: Prefs
         lateinit var db: FirebaseDatabase
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -34,6 +39,17 @@ class addPublicacion : AppCompatActivity() {
             setListeners()
         }
 
+
+    /**
+     * Funcion para el listener de los botones  btnReset y  btnAdd
+     *
+     * Donde ...
+     *
+     * btnReset -> Borra el contenido introducido por pantalla
+     *
+     * btnAdd -> Llama a la funcion añadirPost()
+     *
+     */
         private fun setListeners() {
             binding.btnReset.setOnClickListener {
                 binding.etPost.text.clear()
@@ -43,7 +59,13 @@ class addPublicacion : AppCompatActivity() {
             }
         }
 
-        private fun añadirPost() {
+
+    /**
+     *Esta funcion añado a firebase el post para ello el campo de contenido no puede estar vacio
+     */
+
+
+    private fun añadirPost() {
             var contenido = binding.etPost.text.toString().trim()
             if (contenido.isEmpty()) {
                 binding.etPost.error = "Este campo no puede estar vacio!"
@@ -64,16 +86,20 @@ class addPublicacion : AppCompatActivity() {
             }
         }
 
-
-    private fun onItemView(it: String) {
-        startActivity(Intent(this, PerfilUsuario::class.java).putExtra("email", it))
-    }
+    /**
+     * funcion de onCreateOptionsMenu() es el que nos va a permitir inflar nuestro menú, es decir, hacer
+     * que las opciones definidas en el fichero XML tengan su propia apariencia dentro de nuestra aplicación Android.
+     */
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu1, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * En este método, puedes aumentar el recurso de menú (definido en XML) hacia el Menu proporcionado
+     * en la devolución de llamada
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.inicio -> {

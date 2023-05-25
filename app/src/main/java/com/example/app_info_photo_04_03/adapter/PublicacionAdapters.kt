@@ -6,22 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_info_photo_04_03.R
-import com.example.app_info_photo_04_03.model.Likes
 import com.example.app_info_photo_04_03.model.Publicacion
-import com.example.app_info_photo_04_03.pref.Prefs
-import com.google.firebase.database.FirebaseDatabase
 
 class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicacion>(),
-                          //var listaLikes: ArrayList<Likes> = ArrayList<Likes>(),
                           var onItemView: (Any?) -> Unit,
                           var onItemLike:(Any, Any)-> Unit): RecyclerView.Adapter<PostViewHolder>(){
-
-    // var onItemLike:(Any, Any)-> Unit
-
-    //preferencias de datos:
-    lateinit var prefs: Prefs
-
-    private val db = FirebaseDatabase.getInstance("https://infophoto-2023-default-rtdb.europe-west1.firebasedatabase.app/")
 
    class ViewHolder(val layout: View): RecyclerView.ViewHolder(layout)
 
@@ -31,21 +20,19 @@ class PublicacionAdapters(var lista: ArrayList<Publicacion> = ArrayList<Publicac
 
 
     }
-
-    override fun getItemCount(): Int {
-        return lista.size
-    }
-
+    /**
+     *es una forma de presentar los datos que irán en la vista en una posición determinada.
+     * Algo que debemos destacar es que este método se encuentra
+     */
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-
-    //    val post = lista[position]
-    //    val likes = post.likes!!.toString().toMutableList()
-
         holder.render(lista[position], onItemView,onItemLike)
 
     }
 
-    private fun startActivity(shareIntent: Intent?) {
-
+    /**
+     *getItemCount() que nos indica el numero de elementos que tiene la lista.
+     */
+    override fun getItemCount(): Int {
+        return lista.size
     }
 }

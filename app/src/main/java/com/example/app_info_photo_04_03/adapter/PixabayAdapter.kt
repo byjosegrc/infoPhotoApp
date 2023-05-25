@@ -12,10 +12,18 @@ class PixabayAdapter(var lista: MutableList<Hit>): RecyclerView.Adapter<PixaView
         return PixaViewHolder(v)
     }
 
+
+    /**
+     *es una forma de presentar los datos que irán en la vista en una posición determinada.
+     * Algo que debemos destacar es que este método se encuentra
+     */
     override fun onBindViewHolder(holder: PixaViewHolder, position: Int) {
         holder.render(lista[position])
     }
 
+    /**
+     * getItemCount() que nos indica el numero de elementos que tiene la lista.
+     */
     override fun getItemCount(): Int {
         return lista.size
     }

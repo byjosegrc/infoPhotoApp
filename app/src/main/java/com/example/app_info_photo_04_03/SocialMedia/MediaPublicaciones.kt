@@ -49,6 +49,14 @@ class MediaPublicaciones : AppCompatActivity() {
 
     var lista = ArrayList<Publicacion>()
 
+
+
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -72,6 +80,14 @@ class MediaPublicaciones : AppCompatActivity() {
     }
 
     @SuppressLint("ResourceAsColor")
+
+
+    /**
+     *Esta funcion es apra la configuracion de Swuipe Refresh para darle un diseño mas profesional a la carga de datos
+     * en este caso la publicacion de post
+     *
+     * Configuro tanto el color de fondo del Swuipe como la duracion de tal (5 segundos)
+     * */
     private fun configSwipe() {
         binding.swipeMedia.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(this,
             R.color.botonSubir
@@ -88,7 +104,7 @@ class MediaPublicaciones : AppCompatActivity() {
     }
 
     /**
-     *
+     *La funcion traerPost va a traer los datos de los post desde firebase a la pantalla de la red social
      */
 
     private fun traerPosts() {
@@ -108,7 +124,6 @@ class MediaPublicaciones : AppCompatActivity() {
                     }
                     adapter.lista = lista
                     adapter.notifyDataSetChanged()
-                 //   binding.recAutores.scrollToPosition(lista.size - 1)
 
                 }
             }
@@ -121,7 +136,8 @@ class MediaPublicaciones : AppCompatActivity() {
     }
 
     /**
-     *
+     * Esta funcion es para tener el listener del boton flotante "btnAdd" el cual al llamar
+     * la funcion irAddActivity() nos manda al activity de addPublicacion
      */
     private fun setListeners() {
         binding.btnAdd.setOnClickListener {
@@ -130,13 +146,16 @@ class MediaPublicaciones : AppCompatActivity() {
     }
 
     /**
-     *
+     * Esta funcion cuando se llama nos enviar el cual nos manda al activity de addPublicacion
      */
     private fun irAddActivity() {
         startActivity(Intent(this, addPublicacion::class.java))
     }
 
     /**
+     *
+     * Esta funcion es para el recicler del activity tanto para las lista de datos del post gracias a llamar
+     *a la funcion onItemView() y para los likes de cada post la funcion onItemLike
      *
      */
     private fun setRecycler() {
@@ -153,7 +172,22 @@ class MediaPublicaciones : AppCompatActivity() {
 
 
     @SuppressLint("SuspiciousIndentation")
+
     /**
+     *Esta funcion tiene dentra por parametros tanto el email que es un String como tambien publi de tipo Publicacion
+     *
+     * Esta funcion tiene dos casos:
+     *
+     * Ya que con esta funcion se comprueba que cuando se de al boton de corazon se compruebe si con ese usuario con correo x
+     * ha dado like o no
+     *
+     * 1 --> En  caso de que no haya dado like tengo una condición que encontrado seria distinto a true entonces añadiriria
+     * like del post a firebase
+     *
+     * 2 --> En caso de si haya dado like el usuario esta vez quitaria de firebase el idUser del que le quita el like
+     *
+     * En cada uno de los casos actualizo en firebase el numero de likes de los post gracias a que creo un ArrayList
+     * en el que almaceno los usario que le dan like a cada post
      *
      */
         private fun onItemLike(email: String?, publi: Publicacion) {
@@ -178,7 +212,7 @@ class MediaPublicaciones : AppCompatActivity() {
                             }
                         }
 
-                        // Perform actions based on the retrieved data
+                        // si no es encontrado se añade like en firebase
                         if (!encontradoLike) {
                             db.getReference("likes").child(publi.fecha.toString())
                                 .child("idUser")
@@ -190,13 +224,17 @@ class MediaPublicaciones : AppCompatActivity() {
                                         println("--------------------------------------- DA LIKE")
 
                                     } else {
-                                        // Handle the error, if any
                                     }
                                 }
+                            //actualizo los likes en firebase
                             db.getReference("posts").child(publi.fecha.toString()).child("likes")
                                 .setValue(comprobacion.size).addOnCanceledListener {
                                     traerPosts()
                                 }
+
+
+                            //de lo contrario se quita el like de firebase
+
                         } else {
                             db.getReference("likes").child(publi.fecha.toString())
                                 .child("idUser")
@@ -208,6 +246,7 @@ class MediaPublicaciones : AppCompatActivity() {
                                         // Handle the error, if any
                                     }
                                 }
+                            //actualizo los likes en firebase
                             db.getReference("posts").child(publi.fecha.toString()).child("likes")
                                 .setValue(comprobacion.size).addOnCanceledListener {
                                     traerPosts()
@@ -225,6 +264,7 @@ class MediaPublicaciones : AppCompatActivity() {
                                         }
                                     }
                                 }
+                                //actualizo los likes en firebase
                                 db.getReference("posts").child(publi.fecha.toString()).child("likes")
                                     .setValue(comprobacion.size).addOnCanceledListener {
                                         traerPosts()
@@ -232,19 +272,19 @@ class MediaPublicaciones : AppCompatActivity() {
                             }
                     }
                     else {
-                        // Handle the error, if any
                     }
                 }
+        //siempre llamo la funcion traerPosts para traer los post actualizados
         traerPosts()
         }
 
 
     /**
-     *
+     *Esta funcion lo que hace es mandarte al activitia ddPublicacion y te pregunta por toast si quieres crear un post
      */
     private fun onItemView(it: String) {
         Toast.makeText(this,"¿QUIERES PUBLICAR UN POST?",Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this, PerfilUsuario::class.java))
+        startActivity(Intent(this, addPublicacion::class.java))
     }
 
     /**

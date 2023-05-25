@@ -47,6 +47,11 @@ class ReservasActivity : AppCompatActivity() {
     //Lista Fechas:
     var listaFechas = mutableListOf<String>()
 
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityReservasBinding.inflate(layoutInflater)
@@ -65,6 +70,10 @@ class ReservasActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * Funcion para obtener las reservar
+     */
     private fun obtenerReservas(){
         db.getReference("reservas").addValueEventListener(object : ValueEventListener {
 
@@ -86,20 +95,6 @@ class ReservasActivity : AppCompatActivity() {
 
 
     private fun setListeners() {
-/*
-        //Escucha para la seleccion de la hora inicio de la reserva de sesion
-        binding.etHoraIni.setOnClickListener(){
-            showTimeInicio()
-        }
-
-        //Escucha para la seleccion de la hora fin de la reserva de sesion
-        binding.etHoraFin.setOnClickListener(){
-            showTimeFin()
-        }
-
- */
-
-
 
         //Escucha para la seleccion del dia de la sesion de fotos:
         binding.etCalendario.setOnClickListener{

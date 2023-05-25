@@ -29,7 +29,11 @@ class PerfilUsuario : AppCompatActivity() {
     lateinit var storage: FirebaseStorage
     lateinit var prefs: Prefs
 
-
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         prefs = Prefs(this)
         super.onCreate(savedInstanceState)
@@ -69,12 +73,19 @@ class PerfilUsuario : AppCompatActivity() {
 
     }
 
+    /**
+     * Funcion para el listener del boton modificar en caso de que se quiera modificar los datos el usuario en su cuenta
+     */
     private fun setListeners() {
         binding.btnModificar.setOnClickListener {
             startActivity(Intent(this, ModificarPerfil::class.java))
         }
     }
 
+    /**
+     * Funcion para traer los datos de cada usuario por pantalla
+     * tanto su nombre, apellidos y ciudad
+     */
     private fun obtenerDatos() {
 
         db.getReference("perfiles").addValueEventListener(object : ValueEventListener {
@@ -111,6 +122,10 @@ class PerfilUsuario : AppCompatActivity() {
         })
     }
 
+
+    /**
+     * Recogemos la imagen desde el storage de cada usuario para mostrarlo por pantalla
+     */
     private fun recogerImagen(email: String) {
         //compruebo si tiene imagen o no
         val ref=storage.reference
@@ -130,8 +145,12 @@ class PerfilUsuario : AppCompatActivity() {
             }
     }
 
+
+    /**
+     * Funcion para rellenar la imagen por pantalla usando glide
+     */
     private fun rellenarImageView(uri: Uri?) {
-        val requestOptions = RequestOptions().transform(CircleCrop())
+        val requestOptions = RequestOptions().transform(CircleCrop()) //la transformamos para que sea redonda
         Glide.with(binding.tvNombre.context)
             .load(uri)
             .centerCrop()
@@ -139,11 +158,19 @@ class PerfilUsuario : AppCompatActivity() {
             .into(binding.ivAvatar)
     }
 
+    /**
+     * funcion de onCreateOptionsMenu() es el que nos va a permitir inflar nuestro menú, es decir, hacer
+     * que las opciones definidas en el fichero XML tengan su propia apariencia dentro de nuestra aplicación Android.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu1,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * En este método, puedes aumentar el recurso de menú (definido en XML) hacia el Menu proporcionado
+     * en la devolución de llamada
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.inicio ->{

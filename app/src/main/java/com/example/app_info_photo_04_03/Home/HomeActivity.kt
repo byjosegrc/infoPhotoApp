@@ -20,14 +20,18 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHomeBinding
     lateinit var preferencias: Prefs
-    private lateinit var rutasFotos: CardView
-    private lateinit var socialMedia: CardView
-    private lateinit var sobreNosotrosInfo: CardView
-    private lateinit var reservas: CardView
+
 
     //creo el arraylistof para almacenar las imagenes del carusel
     private val list = mutableListOf<CarouselItem>()
 
+
+
+    /**
+     *Esta es la funcion on  ejecutas la lógica de arranque básica de la aplicación que debe ocurrir una
+     * sola vez en toda la vida de la actividad. Por ejemplo, tu implementación de onCreate() podría vincular
+     * datos a listas, asociar la actividad con un ViewModel y crear instancias de algunas variables de alcance de clase.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,15 +40,9 @@ class HomeActivity : AppCompatActivity() {
         title =
             "\uD83C\uDFE0 \uD835\uDC08\uD835\uDC0D\uD835\uDC08\uD835\uDC02\uD835\uDC08\uD835\uDC0E"
 
-        // setListeners()
         preferencias = Prefs(this)
-        initComponents()
         initListeners()
-      //  setToolbar()
-
-
         // CARRUSEL:
-
         //busco el compone del carusel del layout
         val carousel: ImageCarousel = findViewById(R.id.carousel)
 
@@ -78,67 +76,42 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
-    private fun initComponents() {
-        rutasFotos = findViewById(R.id.cvRutas)
-        sobreNosotrosInfo = findViewById(R.id.cvSobreNosotros)
-        reservas = findViewById(R.id.cvReservas)
-        socialMedia = findViewById(R.id.cvChat)
-    }
 
+
+    /**
+     * Esta funcion es para iniciar los listener de los activity de los botones del HOME
+     */
     private fun initListeners() {
-        rutasFotos.setOnClickListener {
+        binding.cvRutas.setOnClickListener {
             startActivity(Intent(this, RutasGoogle::class.java))
         }
-        sobreNosotrosInfo.setOnClickListener {
+        binding.cvSobreNosotros.setOnClickListener {
             startActivity(Intent(this, SobreNosotros::class.java))
         }
-        reservas.setOnClickListener {
+        binding.cvReservas.setOnClickListener {
             startActivity(Intent(this, ReservasActivity::class.java))
         }
-        socialMedia.setOnClickListener {
+        binding.cvChat.setOnClickListener {
             startActivity(Intent(this, MediaPublicaciones::class.java))
         }
 
     }
 
 
-/*private fun setListeners() {
-  //BOTON RUTAS:
-  binding.btnMaps.setOnClickListener{
-    startActivity(Intent(this, RutasGoogle::class.java))
-  }
-  //BOTON CAMARA
-  binding.btnCamara.setOnClickListener {
-      startActivity(Intent(this, CamaraActivity::class.java))
-  }
-
-  //BOTON VIDEO
-  binding.btnVideo.setOnClickListener {
-      startActivity(Intent(this, SobreNosotros::class.java))
-  }
-  //BOTON SEDE
-  binding.btnSede.setOnClickListener {
-      startActivity(Intent(this, GoogleMaps1::class.java))
-  }
-  //BOTON CARUSEL
-  binding.btnCarusel.setOnClickListener {
-      startActivity(Intent(this, CaruselActivity::class.java))
-  }
-  //BOTON RESERVA
-  binding.btReserva.setOnClickListener {
-      startActivity(Intent(this, ReservasActivity::class.java))
-  }
-  //BOTON CHAT
-  binding.btnChat.setOnClickListener {
-      startActivity(Intent(this, MediaPublicaciones::class.java))
-  }
-}*/
+    /**
+     * funcion de onCreateOptionsMenu() es el que nos va a permitir inflar nuestro menú, es decir, hacer
+     * que las opciones definidas en el fichero XML tengan su propia apariencia dentro de nuestra aplicación Android.
+     */
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater.inflate(R.menu.menu_app, menu)
         return true
     }
 
+    /**
+     * En este método, puedes aumentar el recurso de menú (definido en XML) hacia el Menu proporcionado
+     * en la devolución de llamada
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.itemSalir -> {
