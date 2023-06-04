@@ -93,7 +93,11 @@ class ReservasActivity : AppCompatActivity() {
         })
     }
 
-
+    /**
+     * Funcion para los listener de la clase reserva
+     *
+     *
+     */
     private fun setListeners() {
 
         //Escucha para la seleccion del dia de la sesion de fotos:
@@ -121,24 +125,28 @@ class ReservasActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * Esta funcion cuando se llama abre un cuadro de dialogo
+     * esto muestra la información sobre los pack de las sesiones
+     */
     private fun abrirDialgoPack() {
         println("---------------------------")
         val builder = AlertDialog.Builder(this, R.style.TransparentDialog)
-        // builder.setTitle("PACK FOTOS")
-        // val inflater = LayoutInflater()
         val inflate = layoutInflater.inflate(R.layout.activity_dialogo_tipo_pack, null)
         builder.setView(inflate)
-        //builder.setIcon(R.drawable)
-
         builder.show() //monstrarlo
     }
 
 
+    /**
+     * esta funcion va a calcular segundo los datos que se han selecciado:
+     * En el siguiente código muestro que cuando se llama a la función por cada
+     * condición if se va a comprobar por las opciones seleccionadas por pantalla y
+     * se devolverá un precio dependiendo de lo seleccionado.
+     * - Las opciones seleccionas son el tipo de sesión y tipo de pack seleccionado:
+     */
 
-
-
-
-    //esta funcion va a calcular segundo los datos que se han selecciado:
     private fun calcularPrecios() {
 
         //BAUTIZO:
@@ -191,6 +199,11 @@ class ReservasActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Funcion para guardar la reserva de la sesión datos personales, dia de la sesion,
+     * ubicación, tipo de sesión y tipo de pack
+     *
+     */
     private fun guardarReserva() {
         //Nombre
         nombre = binding.etNombre.text.toString().trim()
@@ -206,17 +219,22 @@ class ReservasActivity : AppCompatActivity() {
             binding.etApellido.requestFocus()
             return
         }
+
         //telefono
         telefono = binding.etTelefono.text.toString().trim()
-        if (apellidos.isEmpty()) {
-            binding.etTelefono.error = "Este campo no puede estar vacio"
+        if (telefono.isEmpty() &&  telefono.length>8 && telefono.length<10) {
+            binding.etTelefono.error = "Introduce un numero de telefono valido"
             binding.etTelefono.requestFocus()
             return
         }
 
+
         //calendario:
-
-
+        if (diaCalendario.isEmpty()) {
+            binding.etCalendario.error = "Este campo no puede estar vacio"
+            binding.etCalendario.requestFocus()
+            return
+        }
         diaCalendario = binding.etCalendario.text.toString().trim()
         if(listaFechas.contains(diaCalendario)){
             Toast.makeText(this,"SELECCIONE OTRO DIA, EL SELECCIONADO NO ESTA DISPONIBLE", Toast.LENGTH_SHORT).show()
@@ -247,7 +265,7 @@ class ReservasActivity : AppCompatActivity() {
         reservaSesiones.nombre?.let {
             db.getReference("reservas").child(it).setValue(reservaSesiones).addOnSuccessListener {
                 startActivity(Intent(this, HomeActivity::class.java))
-                Toast.makeText(this,"SESIÓN RESERVADA CORRECTAMENTE", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"SU RESERVA HA SIDO TRAMITADA", Toast.LENGTH_SHORT).show()
                 finish()
             }
         }

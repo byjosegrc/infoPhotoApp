@@ -29,7 +29,7 @@ class PostViewHolder(v: View): RecyclerView.ViewHolder(v) {
 
         //conexion a la base de datos de real time database de mi proyecto de firebase
         db = FirebaseDatabase.getInstance("https://infophoto-2023-default-rtdb.europe-west1.firebasedatabase.app/")
-
+        prefs = Prefs(binding.tvEmail.context)
         val email:String? = prefs.getEmail()
 
         binding.tvEmail.text = posts.autor
