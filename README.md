@@ -34,7 +34,6 @@
 <br>
 <br>
 ### Reglas de Realtime y Storage en firebase
-
 #### En reglas de realtime firebase:
 ``` json
 {
@@ -57,7 +56,5 @@ rules_version = '2';
   }
   }
 ```
-  
+#### Proyecto Integrado creado por José Manuel Garcia Travé
 
-<br>
-### Proyecto Integrado creado por José Manuel Garcia Travé
