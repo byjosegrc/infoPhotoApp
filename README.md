@@ -20,31 +20,6 @@
 
 <br>
 
-### 3. Tras esto configurar las reglas de Realtime y Storage en firebase
-
-#### 3.1 En reglas de realtime firebase:
-``` json
-{
-  "rules": {
-    ".read": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
-    ".write": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
-  }
- }
- ```
-
-#### 3.2 En reglas de firebase storage: 
-#### -> rules_version = '2';
-#### service firebase.storage {
-####   match /b/{bucket}/o {
-####     match /{allPaths=**} {
-####       allow read, write: if
-####           request.time < timestamp.date(2024, 6, 20);
-####     }
-####   }
-#### }
-
-<br>
-
 ### 4 Borra el archivo app -> Google-services.json
 
 ### 5 Después, en nuestro proyecto ya creado deberemos ir a Tools -> Firebase y sincronizamos con Authentication, Realtime Database y Cloud storage for Firebase.
@@ -74,5 +49,34 @@
 ### LEGUAJE DE PROGRAMACION:
 #### KOTLIN
 <br>
+<br>
+<br>
+<br>
+### Reglas de Realtime y Storage en firebase
 
- Proyecto Integrado creado por José Manuel Garcia Travé
+#### En reglas de realtime firebase:
+``` json
+{
+  "rules": {
+    ".read": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
+    ".write": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
+  }
+ }
+ ```
+
+#### En reglas de firebase storage: 
+``` json
+rules_version = '2';
+  service firebase.storage {
+  match /b/{bucket}/o {
+  match /{allPaths=**} {
+  allow read, write: if
+  request.time < timestamp.date(2024, 6, 20);
+  }
+  }
+  }
+´´´  
+  
+
+<br>
+### Proyecto Integrado creado por José Manuel Garcia Travé
