@@ -29,7 +29,8 @@
     ".read": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
     ".write": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
   }
-``` }
+ }
+ ```
 
 #### 3.2 En reglas de firebase storage: 
 #### -> rules_version = '2';
