@@ -14,28 +14,12 @@
 
 ## Para montar el proyecto seguiremos los siguientes pasos:
 
-### 1 Para empezar, será necesario tener creado un proyecto en firebase.
-
-### 2 Agrega un proyecto con el nombre que quieras. Una vez creado entra en autentication -> Sign-in method y habilita el login por Google.
-
+### 1. DESCARGAR EL PROYECTO DE ESTE MISMO GITHUB.
 <br>
-
-### 4 Borra el archivo app -> Google-services.json
-
-### 5 Después, en nuestro proyecto ya creado deberemos ir a Tools -> Firebase y sincronizamos con Authentication, Realtime Database y Cloud storage for Firebase.
-
-### 6 Una vez hecho ejecutamos en el gradle el signingreport.
-
-### 7 copiamos la clave SHA1.
+### 2. IMPORTAR EN ANDROID STUDIO.
 <br>
-
-### 8 De vuelta en firebase vamos a configuración del proyecto.
-
-### 9 Y aquí agregamos nuestra SHA1.
-
-### 10 Ya lo único que quedaría seria ir por el código y cambiar aquellas rutas del storage y del realtime database por tus propias rutas y ya estaría listo para buildear el proyecto.
-
-<br><br>
+### 3. EJECUTAR EL PROYECTO EN ANDROID STUDIO
+<br>
 
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
