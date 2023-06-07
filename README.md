@@ -14,12 +14,9 @@
 
 ## Para montar el proyecto seguiremos los siguientes pasos:
 
-### 1. DESCARGAR EL PROYECTO DE ESTE MISMO GITHUB.
-<br>
-### 2. IMPORTAR EN ANDROID STUDIO.
-<br>
-### 3. EJECUTAR EL PROYECTO EN ANDROID STUDIO
-<br>
+### 1. DESCARGAR EL PROYECTO DE ESTE MISMO GITHUB.<br>
+### 2. IMPORTAR EN ANDROID STUDIO.<br>
+### 3. EJECUTAR EL PROYECTO EN ANDROID STUDIO<br>
 
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
