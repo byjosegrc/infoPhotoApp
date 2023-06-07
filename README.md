@@ -58,8 +58,8 @@
 ``` json
 {
   "rules": {
-    ".read": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
-    ".write": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
+    ".read": "auth.uid!=null",  
+    ".write": "auth.uid!=null",  
   }
  }
 ```
