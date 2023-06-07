@@ -62,7 +62,7 @@
     ".write": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
   }
  }
- ```
+```
 
 #### En reglas de firebase storage: 
 ``` json
@@ -75,7 +75,7 @@ rules_version = '2';
   }
   }
   }
-´´´  
+```
   
 
 <br>
