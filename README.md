@@ -23,12 +23,13 @@
 ### 3. Tras esto configurar las reglas de Realtime y Storage en firebase
 
 #### 3.1 En reglas de realtime firebase:
-´ {
+``` json
+{
   "rules": {
     ".read": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
     ".write": "auth.uid!=null",  // Compruebo que si no esta logueado en la app no podra leer
   }
-´ }
+``` }
 
 #### 3.2 En reglas de firebase storage: 
 #### -> rules_version = '2';
