@@ -230,11 +230,6 @@ class ReservasActivity : AppCompatActivity() {
 
 
         //calendario:
-        if (diaCalendario.isEmpty()) {
-            binding.etCalendario.error = "Este campo no puede estar vacio"
-            binding.etCalendario.requestFocus()
-            return
-        }
         diaCalendario = binding.etCalendario.text.toString().trim()
         if(listaFechas.contains(diaCalendario)){
             Toast.makeText(this,"SELECCIONE OTRO DIA, EL SELECCIONADO NO ESTA DISPONIBLE", Toast.LENGTH_SHORT).show()
